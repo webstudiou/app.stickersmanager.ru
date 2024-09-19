@@ -30,6 +30,7 @@ import type { HTMLAttributes } from 'vue'
 import { twJoin, twMerge, mergeConfig } from '#app-ui/utils'
 import { useCore } from '#imports'
 import { icon as el } from '#app-ui/configs'
+// @ts-expect-error
 import appConfig from '#build/app.config'
 
 const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.icon, el)
