@@ -1,0 +1,44 @@
+{
+  "name": "app.stickersmanager.ru",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "vue-tsc --noEmit && nuxi typecheck docs",
+    "release": "release-it"
+  },
+  "dependencies": {
+    "@nuxt/icon": "^1.5.1",
+    "@nuxt/image": "^1.8.0",
+    "@nuxtjs/color-mode": "^3.5.1",
+    "@nuxtjs/i18n": "^8.5.3",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@popperjs/core": "^2.11.8",
+    "@vee-validate/nuxt": "^4.13.2",
+    "laravel-echo": "^1.16.1",
+    "nuxt": "^3.13.0",
+    "nuxt-typed-router": "^3.6.5",
+    "pusher-js": "^8.4.0-rc2",
+    "tailwind-merge": "^2.5.2",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@egoist/tailwindcss-icons": "^1.8.1",
+    "@nuxt/eslint": "^0.5.7",
+    "@release-it/conventional-changelog": "^8.0.2",
+    "eslint": "^9.10.0",
+    "nuxt-headlessui": "^1.2.0",
+    "release-it": "^17.6.0",
+    "sass": "^1.79.1",
+    "typescript": "^5.6.2",
+    "vue-tsc": "^2.1.6"
+  }
+}

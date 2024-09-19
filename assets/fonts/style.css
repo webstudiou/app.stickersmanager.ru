@@ -1,0 +1,85 @@
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    src:local('☺'), url("SFNSDisplay.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 100;
+    src:local('☺'), url("SFCompactDisplay-Ultralight.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 200;
+    src:local('☺'), url("SFCompactDisplay-Thin.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 300;
+    src:local('☺'), url("SFCompactDisplay-Light.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 400;
+    src:local('☺'), url("SFCompactDisplay-Regular.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 500;
+    src:local('☺'), url("SFCompactDisplay-Medium.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 600;
+    src:local('☺'), url("SFCompactDisplay-Semibold.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 700;
+    src:local('☺'), url("SFCompactDisplay-Bold.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 800;
+    src:local('☺'), url("SFCompactDisplay-Heavy.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Display';
+    font-style:normal;
+    font-weight: 900;
+    src:local('☺'), url("SFCompactDisplay-Black.otf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:'SF Pro Text';
+    font-style:normal;
+    src:local('☺'), url("SFNSText.ttf") format("truetype");
+    font-display: swap;
+}
