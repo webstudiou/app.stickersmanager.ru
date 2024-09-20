@@ -5,7 +5,7 @@ const { ui } = useCore('sidebar', null, config)
 
 const storeConfig = useStoreConfigs()
 
-const { isNotificationSlideOpened } = inject<boolean>('isNotificationOpened', false)
+// const { isNotificationSlideOpened } = inject<boolean>('isNotificationOpened', false)
 </script>
 
 <template>
@@ -68,8 +68,6 @@ const { isNotificationSlideOpened } = inject<boolean>('isNotificationOpened', fa
         as="div"
         :class="ui.buttons.default"
         active-class="text-primary"
-        :active="isNotificationSlideOpened"
-        @click="isNotificationSlideOpened = !isNotificationSlideOpened"
       >
         <els-icon
           name="notifications"
