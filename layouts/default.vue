@@ -1,9 +1,30 @@
 <script setup lang="ts">
 import { useStoreConfigs } from '~/stores/StoreConfigs'
+import { useCoreStates } from '~/composables'
 
 const storeConfigs = useStoreConfigs()
-
 const loading = computed(() => storeConfigs.loading)
+
+const { isSidebarOpened, isNotificationsOpened } = useCoreStates()
+const isSidebarSlideOpened = computed({
+  get() {
+    return isSidebarOpened.value
+  },
+  set(value) {
+    isSidebarOpened.value = value
+  },
+})
+const isNotificationSlideOpened = computed({
+  get() {
+    return isNotificationsOpened.value
+  },
+  set(value) {
+    isNotificationsOpened.value = value
+  },
+})
+
+provide('isSidebarOpened', isSidebarSlideOpened)
+provide('isNotificationOpened', { isNotificationSlideOpened })
 </script>
 
 <template>
