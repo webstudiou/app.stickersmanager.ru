@@ -26,7 +26,6 @@ const defuTwMerge = createDefu((obj, key, value, namespace) => {
     return false
   }
   if (typeof obj[key] === 'string' && typeof value === 'string' && obj[key] && value) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     obj[key] = customTwMerge(obj[key], value)
     return true
