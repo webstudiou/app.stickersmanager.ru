@@ -5,6 +5,7 @@ import { useErrorHandler } from '~/composables'
 export const useStoreConfigs = defineStore('StoreConfigs', {
   state: () => ({
     loading: ref<boolean>(true),
+    service: ref<'dashboard' | 'knowledge' | 'staff' | 'settings' | 'storage' | 'me'>('dashboard'),
     configs: ref<Config>(),
   }),
   actions: {

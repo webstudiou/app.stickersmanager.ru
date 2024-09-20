@@ -25,6 +25,15 @@ export const useStoreAuth = defineStore('StoreAuth', {
         .catch(e => useErrorHandler(e))
         .finally(() => this.loading = false)
     },
+    async signout() {
+      const { signOut } = useAuth()
+
+      await $fetch('/api/sign-out', { method: 'POST' }).finally(async () => {
+        await signOut()
+        window.localStorage.clear()
+        window.sessionStorage.clear()
+      })
+    },
   },
   getters: {
     settings: state => state.user?.data.relationships.settings || undefined,

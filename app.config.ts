@@ -8,6 +8,13 @@ export default defineAppConfig({
     aliases: {
       spinner: 'svg-spinners:3-dots-scale-middle',
       email: 'lucide:mail',
+      dashboard: 'lucide:building-2',
+      knowledge: 'lucide:book-open',
+      staff: 'lucide:users-round',
+      storage: 'lucide:hard-drive',
+      notifications: 'lucide:bell',
+      me: 'lucide:user',
+      signout: 'lucide:power',
     },
   },
 })
