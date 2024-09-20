@@ -5,6 +5,9 @@ export default defineAppConfig({
   icon: {
     size: '20px',
     class: 'svg-icon',
-    aliases: {},
+    aliases: {
+      spinner: 'svg-spinners:3-dots-scale-middle',
+      email: 'lucide:mail',
+    },
   },
 })

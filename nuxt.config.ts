@@ -1,3 +1,5 @@
+import { defineNuxtConfig } from 'nuxt/config'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
@@ -10,10 +12,6 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no',
       htmlAttrs: {
         lang: 'ru',
-        class: 'scroll-smooth',
-      },
-      bodyAttrs: {
-        class: 'antialiased',
       },
       meta: [
         { name: 'msapplication-TileColor', content: '#007aff' },
@@ -57,7 +55,26 @@ export default defineNuxtConfig({
     'nuxt-typed-router',
     '@nuxt/eslint',
     '@vee-validate/nuxt',
+    '@sidebase/nuxt-auth',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
+  auth: {
+    globalAppMiddleware: {
+      allow404WithoutAuth: true,
+      isEnabled: true,
+    },
+    sessionRefresh: {
+      enableOnWindowFocus: true,
+      enablePeriodically: 86400000,
+    },
+    provider: {
+      type: 'authjs',
+    },
+  },
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
   i18n: {
     baseUrl: process.env.WEB_URL,
     locales: [{ code: 'ru', name: 'Русский', file: 'ru.json' }],
@@ -91,6 +108,7 @@ export default defineNuxtConfig({
     prefix: 'hls',
   },
   veeValidate: {
+    autoImports: true,
     componentNames: {
       Form: 'ElsForm',
     },
@@ -104,6 +122,9 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: ['pusher-js'],
     },
+  },
+  build: {
+    transpile: ['pinia-plugin-persistedstate'],
   },
   nitro: {
     compressPublicAssets: true,

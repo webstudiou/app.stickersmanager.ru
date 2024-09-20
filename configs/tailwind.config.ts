@@ -8,6 +8,7 @@ export default {
     'modules/app-ui/runtime/composables/**/*.{js,ts}',
     'modules/app-ui/runtime/plugins/**/*.{js,ts}',
     'modules/app-ui/runtime/utils/**/*.{js,ts}',
+    'modules/app-ui/runtime/configs/**/*.{mjs,js,ts}',
 
     'components/**/*.{vue,js,ts}',
     'layouts/**/*.vue',

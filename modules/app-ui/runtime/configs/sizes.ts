@@ -1,0 +1,51 @@
+export default {
+  height: {
+    xs: 'h-xs',
+    sm: 'h-sm',
+    md: 'h-md',
+    lg: 'h-lg',
+    xl: 'h-xl',
+  },
+  minHeight: {
+    xs: 'min-h-xs',
+    sm: 'min-h-sm',
+    md: 'min-h-md',
+    lg: 'min-h-lg',
+    xl: 'min-h-xl',
+  },
+  width: {
+    xs: 'w-xs',
+    sm: 'w-sm',
+    md: 'w-md',
+    lg: 'w-lg',
+    xl: 'w-xl',
+  },
+  minWidth: {
+    xs: 'min-w-xs',
+    sm: 'min-w-sm',
+    md: 'min-w-md',
+    lg: 'min-w-lg',
+    xl: 'min-w-xl',
+  },
+  size: {
+    xs: 'h-xs w-xs',
+    sm: 'h-sm w-sm',
+    md: 'h-md w-md',
+    lg: 'h-lg w-lg',
+    xl: 'h-xl w-xl',
+  },
+  minSize: {
+    xs: 'min-h-xs min-w-xs',
+    sm: 'min-h-sm min-w-sm',
+    md: 'min-h-md min-w-md',
+    lg: 'min-h-lg min-w-lg',
+    xl: 'min-h-xl min-w-xl',
+  },
+  paddingX: {
+    xs: 'px-1',
+    sm: 'px-2',
+    md: 'px-3',
+    lg: 'px-4',
+    xl: 'px-5',
+  },
+}

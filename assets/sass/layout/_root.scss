@@ -16,3 +16,19 @@
 .layout-leave-to {
   filter: grayscale(1);
 }
+
+html, body {
+  @apply w-full h-full overflow-hidden;
+}
+
+#__nuxt {
+  @apply flex flex-auto justify-start h-full overflow-hidden
+}
+
+body {
+  @apply font-sans font-normal text-base text-labels-primary bg-backgrounds-primary tracking-normal;
+
+  * {
+    @apply outline-none
+  }
+}

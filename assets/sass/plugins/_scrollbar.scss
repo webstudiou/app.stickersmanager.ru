@@ -2,7 +2,7 @@
   scrollbar-width: thin;
   scroll-behavior: smooth;
 
-  /*& ::-webkit-scrollbar {
+  & ::-webkit-scrollbar {
     width: 8px;
     @apply bg-backgrounds-primary;
   }
@@ -26,5 +26,5 @@
 
   & ::-webkit-scrollbar-thumb:horizontal{
     box-shadow: inset 5px 5px 0 0 theme('colors.primary.DEFAULT')
-  }*/
+  }
 }
