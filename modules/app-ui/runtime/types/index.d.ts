@@ -18,6 +18,8 @@ interface Color {
 declare global {
     type Strategy = 'merge' | 'override'
 
+    type Mutable<T> = { -readonly [P in keyof T]: T[P] }
+
     interface TightMap<O = any> {
       [key: string]: TightMap | O
     }

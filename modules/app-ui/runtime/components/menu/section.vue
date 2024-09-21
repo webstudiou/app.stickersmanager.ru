@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineOptions({
-  inheritAttrs: false,
+  name: 'ElsMenuSection',
 })
 
 const props = withDefaults(defineProps<Props>(), {
@@ -8,16 +8,13 @@ const props = withDefaults(defineProps<Props>(), {
   ui: () => ({}),
 })
 
-const { ui, attrs } = useCore('container', toRef(props, 'ui'), config)
+const { ui } = useCore('menu-section', toRef(props, 'ui'), config)
 
-const wrapperClass = computed(() => twMerge(twJoin(ui.value.wrapper), props.class))
+const wrapperClass = computed(() => twMerge(twJoin(ui.value.section.wrapper), props.class))
 </script>
 
 <template>
-  <div
-    :class="wrapperClass"
-    v-bind="attrs"
-  >
+  <div :class="wrapperClass">
     <slot />
   </div>
 </template>
@@ -25,14 +22,12 @@ const wrapperClass = computed(() => twMerge(twJoin(ui.value.wrapper), props.clas
 <script lang="ts">
 import type { HTMLAttributes } from 'vue'
 import { twJoin, twMerge, mergeConfig } from '#app-ui/utils'
+import { useCore } from '#imports'
+import { menu as el } from '#app-ui/configs'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 
-const el = {
-  wrapper: 'w-full max-w-full mx-auto px-2.5',
-}
-
-const config = mergeConfig<typeof el>(appConfig.ui?.strategy as Strategy, null, el)
+const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.menu, el)
 
 type Props = {
   class?: HTMLAttributes['class']

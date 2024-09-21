@@ -4,17 +4,22 @@ import { useLangs } from '#app-ui/composables'
 
 const { setCrumbs, setTitle } = useCrumbs()
 
-setCrumbs([])
+setCrumbs([
+  { name: 'pages.storage.index.headings.title' },
+])
 
-setTitle('pages.dashboard.index.headings.title')
+setTitle('pages.storage.index.headings.title')
 
 useHead({
-  title: useLangs('pages.dashboard.index.headings.title'),
+  title: useLangs('pages.storage.index.headings.title'),
 })
 </script>
 
 <template>
-  <div>
-    Dashboard Index
-  </div>
+  <app-page
+    scrollable
+    class="bg-backgrounds-primary"
+  >
+    <app-container />
+  </app-page>
 </template>

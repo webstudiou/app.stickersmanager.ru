@@ -4,12 +4,15 @@ import { useLangs } from '#app-ui/composables'
 
 const { setCrumbs, setTitle } = useCrumbs()
 
-setCrumbs([])
+setCrumbs([
+  { name: 'pages.me.index.headings.title', to: 'me' },
+  { name: 'pages.me.integrations.index.headings.title' },
+])
 
-setTitle('pages.dashboard.index.headings.title')
+setTitle('pages.me.integrations.index.headings.title')
 
 useHead({
-  title: useLangs('pages.dashboard.index.headings.title'),
+  title: useLangs('pages.me.integrations.index.headings.title'),
 })
 </script>
 

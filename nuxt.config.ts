@@ -75,6 +75,14 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./stores/**'],
   },
+  piniaPersistedstate: {
+    debug: process.env.NODE_ENV !== 'production',
+    storage: 'localStorage',
+    cookieOptions: {
+      sameSite: 'strict',
+      secure: process.env.NODE_ENV !== 'production',
+    },
+  },
   i18n: {
     baseUrl: process.env.WEB_URL,
     locales: [{ code: 'ru', name: 'Русский', file: 'ru.json' }],
