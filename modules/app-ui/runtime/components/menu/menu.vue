@@ -21,7 +21,8 @@ const emits = defineEmits({
     id: string,
     path: string[],
     item: MenuItemClicked,
-    routerResult?: Promise<VoidFunction | NavigationFailure>,
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+    routerResult?: Promise<void | NavigationFailure>,
   ) => isString(id) && checkIndexPath(path) && isObject(item) && (routerResult === undefined || routerResult instanceof Promise),
 })
 
@@ -79,7 +80,7 @@ const handleMenuClick: ({ id, path }: { id: any, path: any }) => void = ({ id, p
   }
 }
 
-const handleItemClick: Menu['handleItemClick'] = (menuItem) => {
+const handleItemClick: Menu['handleItemClick'] = (menuItem: MenuItemClicked) => {
   const { id, path } = menuItem
 
   if (isNil(id) || isNil(path)) return
@@ -132,11 +133,11 @@ watch(items.value, init)
     delete subs.value[item.id]
   }
 
-  const addItem: Menu['addItem'] = (item) => {
+  const addItem: Menu['addItem'] = (item: MenuItem) => {
     items.value[item.id] = item
   }
 
-  const removeItem: Menu['removeItem'] = (item) => {
+  const removeItem: Menu['removeItem'] = (item: MenuItem) => {
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete items.value[item.id]
   }
