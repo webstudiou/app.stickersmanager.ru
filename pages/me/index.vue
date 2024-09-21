@@ -16,7 +16,7 @@ useHead({
 
 const storeAuth = useStoreAuth()
 const user = computed(() => storeAuth.user)
-const settings = computed(() => storeAuth.settings)
+// const settings = computed(() => storeAuth.settings)
 </script>
 
 <template>

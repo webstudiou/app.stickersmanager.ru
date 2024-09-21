@@ -70,7 +70,9 @@ onBeforeUnmount(() => {
   const addMenu: SubMenu['addMenu'] = (item) => {
     subs.value[item.id] = item
   }
-  const removeMenu: SubMenu['removeMenu'] = (item) => {
+  const removeMenu: SubMenu['removeMenu'] = (item: MenuItem) => {
+    /**/
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete subs.value[item.id]
   }
   provide<SubMenu>(`submenu:${ins.uid}`, {

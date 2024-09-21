@@ -13,7 +13,7 @@ const { ui, attrs } = useCore('transition-collapse', toRef(props, 'ui'), config,
 function onEnter(_el: Element, done: () => void) {
   const el = _el as HTMLElement
   el.style.height = '0'
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   el.offsetHeight
   el.style.height = el.scrollHeight + 'px'
   el.addEventListener('transitionend', done, { once: true })
@@ -22,7 +22,7 @@ function onEnter(_el: Element, done: () => void) {
 function onBeforeLeave(_el: Element) {
   const el = _el as HTMLElement
   el.style.height = el.scrollHeight + 'px'
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   el.offsetHeight
 }
 
