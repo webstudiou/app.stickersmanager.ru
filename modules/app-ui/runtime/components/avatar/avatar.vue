@@ -43,19 +43,9 @@ const loadingClass = computed(() => twJoin(ui.value.loading.base, ui.value.color
 </script>
 
 <template>
-  <div
-    :class="wrapperClass"
-    :style="style"
-    v-bind="attrs"
-  >
-    <div
-      v-if="loading"
-      :class="loadingClass"
-    >
-      <els-spinner
-        class="text-white"
-        size="1rem"
-      />
+  <div :class="wrapperClass" :style="style" v-bind="attrs">
+    <div v-if="loading" :class="loadingClass">
+      <els-spinner class="text-white" size="1rem" />
     </div>
 
     <div :class="ui.avatar.base">
@@ -68,30 +58,17 @@ const loadingClass = computed(() => twJoin(ui.value.loading.base, ui.value.color
         @error="onError"
       />
 
-      <els-icon
-        v-else-if="icon"
-        :name="icon"
-        :size="iconSize"
-      />
+      <els-icon v-else-if="icon" :name="icon" :size="iconSize" />
 
-      <div
-        v-else-if="(placeholder || title) && props.class?.includes('is-last')"
-        :class="ui.placeholders.base"
-      >
+      <div v-else-if="(placeholder || title) && props.class?.includes('is-last')" :class="ui.placeholders.base">
         {{ useLangs(placeholder ?? title) }}
       </div>
-      <div
-        v-if="title && props.class?.includes('is-last')"
-        :class="ui.placeholders.base"
-      >
+      <div v-if="title && props.class?.includes('is-last')" :class="ui.placeholders.base">
         {{ useLangs(title) }}
       </div>
     </div>
 
-    <div
-      v-if="$slots.badge || badge"
-      :class="badgeClass"
-    >
+    <div v-if="$slots.badge || badge" :class="badgeClass">
       <slot name="badge" />
     </div>
   </div>
@@ -130,6 +107,6 @@ type Props = {
   imgClass?: HTMLAttributes['class']
   style?: HTMLAttributes['style']
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 </script>

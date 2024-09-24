@@ -19,6 +19,7 @@ export default defineAppConfig({
       'security': 'lucide:key-square',
       'integrations': 'lucide:cable',
       'chevron-right': 'lucide:chevron-right',
+      'password': 'lucide:lock',
     },
   },
 })

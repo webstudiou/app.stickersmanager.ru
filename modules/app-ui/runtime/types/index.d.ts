@@ -1,4 +1,6 @@
+import type { Avatar } from '../components/avatar/avatar.vue'
 import type * as config from './runtime/configs'
+import type { NuxtLinkProps } from '#app'
 
 interface Color {
   red: { [key: string | number]: string }
@@ -49,6 +51,19 @@ declare global {
       footer?: number
       [key: string]: any
     } & DeepPartial<config, string>
+
+    interface DropdownItem extends NuxtLinkProps {
+      title: string
+      titleClass?: string
+      slot?: string
+      icon?: string
+      iconClass?: string
+      avatar?: Avatar
+      shortcuts?: string[]
+      disabled?: boolean
+      class?: string
+      click?: (...args: any[]) => void
+    }
 }
 
 declare module '@nuxt/schema' {

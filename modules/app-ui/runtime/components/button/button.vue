@@ -93,46 +93,21 @@ export default defineComponent({
       :class="buttonClass"
       v-bind="{ ...linkProps, ...attrs }"
     >
-      <slot
-        name="leading"
-        :disabled="disabled"
-        :loading="loading"
-      >
-        <div
-          v-if="isLeading && leadingIconName"
-          :class="loading ? ui.loader : iconsClass"
-        >
-          <els-icon
-            :name="leadingIconName"
-            :size="iconSize"
-            aria-hidden="true"
-          />
+      <slot name="leading" :disabled="disabled" :loading="loading">
+        <div v-if="isLeading && leadingIconName" :class="loading ? ui.loader : iconsClass">
+          <els-icon :name="leadingIconName" :size="iconSize" aria-hidden="true" />
         </div>
       </slot>
 
-      <span
-        v-if="($slots.default || title) && !icon"
-        :class="['truncate', loading && 'hidden']"
-      >
+      <span v-if="($slots.default || title) && !icon" :class="['truncate', loading && 'hidden']">
         <slot>
           {{ useLangs(title) }}
         </slot>
       </span>
 
-      <slot
-        name="trailing"
-        :disabled="disabled"
-        :loading="loading"
-      >
-        <div
-          v-if="isTrailing && trailingIconName"
-          :class="loading ? ui.loader : iconsClass"
-        >
-          <els-icon
-            :name="trailingIconName"
-            :size="iconSize"
-            aria-hidden="true"
-          />
+      <slot name="trailing" :disabled="disabled" :loading="loading">
+        <div v-if="isTrailing && trailingIconName" :class="loading ? ui.loader : iconsClass">
+          <els-icon :name="trailingIconName" :size="iconSize" aria-hidden="true" />
         </div>
       </slot>
     </els-link>

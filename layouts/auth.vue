@@ -31,5 +31,7 @@ const site = computed(() => storeConfigs.org?.url || 'https://wstudiou.ru')
         Client: {{ version }}&nbsp;/&nbsp;Server: {{ server }}
       </div>
     </app-container>
+
+    <els-notifications />
   </div>
 </template>

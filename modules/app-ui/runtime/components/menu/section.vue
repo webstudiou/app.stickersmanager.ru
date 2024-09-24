@@ -31,6 +31,6 @@ const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.menu, 
 
 type Props = {
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 </script>

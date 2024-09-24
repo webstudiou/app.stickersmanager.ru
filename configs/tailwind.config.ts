@@ -1125,25 +1125,25 @@ export default {
        2: '2px',
        4: '4px',
        8: '8px',
-     },
-     transformOrigin: {
-       center: 'center',
-       top: 'top',
-       'top-right': 'top right',
-       right: 'right',
-       'bottom-right': 'bottom right',
-       bottom: 'bottom',
-       'bottom-left': 'bottom left',
-       left: 'left',
-       'top-left': 'top left',
      }, */
+    transformOrigin: {
+      'center': 'center',
+      'top': 'top',
+      'top-right': 'top right',
+      'right': 'right',
+      'bottom-right': 'bottom right',
+      'bottom': 'bottom',
+      'bottom-left': 'bottom left',
+      'left': 'left',
+      'top-left': 'top left',
+    },
     transitionDelay: {
       0: '0s',
-      /* 75: '75ms',
+      /* 75: '75ms', */
       100: '100ms',
-      150: '150ms', */
+      /* 150: '150ms', */
       250: '250ms',
-      /* 300: '300ms', */
+      350: '350ms',
       500: '500ms',
       /* 700: '700ms',
       1000: '1000ms', */
@@ -1165,8 +1165,8 @@ export default {
       all: 'all',
       DEFAULT: 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
       colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
-      /* opacity: 'opacity',
-      shadow: 'box-shadow', */
+      opacity: 'opacity',
+      /* shadow: 'box-shadow', */
       transform: 'transform',
     },
     transitionTimingFunction: {

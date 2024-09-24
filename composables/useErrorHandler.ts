@@ -1,12 +1,14 @@
 import type { IFetchError } from 'ofetch'
+import { useToast } from '#app-ui/composables'
+import { useStoreAuth } from '~/stores'
 
-export const useErrorHandler = (e: IFetchError) => {
-  // const toast = useToast()
+export const useErrorHandler = async (e: IFetchError) => {
+  const toast = useToast()
 
   switch (e.statusCode) {
     case 401: {
-      // const authStore = AuthStore()
-      // await authStore.signout()
+      const storeAuth = useStoreAuth()
+      await storeAuth.signout()
       break
     }
     default: {

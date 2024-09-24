@@ -36,6 +36,6 @@ const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.spinne
 type Props = {
   size?: string
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 </script>

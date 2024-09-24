@@ -24,7 +24,7 @@ const wrapperClass = computed(() => twMerge(twJoin(ui.value.wrapper), props.clas
 
 <script lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { twJoin, twMerge, mergeConfig } from '#app-ui/utils'
+import { twJoin, twMerge, mergeConfig } from '#imports'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 
@@ -32,7 +32,7 @@ const el = {
   wrapper: 'w-full max-w-full mx-auto px-2.5',
 }
 
-const config = mergeConfig<typeof el>(appConfig.ui?.strategy as Strategy, null, el)
+const config = mergeConfig<typeof el>(appConfig.ui.strategy, null, el)
 
 type Props = {
   class?: HTMLAttributes['class']

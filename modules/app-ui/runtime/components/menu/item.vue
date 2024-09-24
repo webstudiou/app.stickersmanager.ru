@@ -6,62 +6,55 @@ defineOptions({
 const props = withDefaults(defineProps<Props>(), {
   id: null,
   icon: undefined,
-  order: undefined,
   route: undefined,
-  routes: () => [],
   disabled: false,
-  soon: false,
   class: undefined,
   ui: () => ({}),
 })
 
-const emits = defineEmits({
-  ['click']: (menuItem: MenuItem) => isString(menuItem.id) && Array.isArray(menuItem.path),
+const emit = defineEmits({
+  click: (item: MenuItem) => isString(item.id) && Array.isArray(item.path),
 })
 
-const ins = getCurrentInstance()!
-const { ui } = useCore('menu-item', toRef(props, 'ui'), config)
-const root = inject<Menu>('menu')!
-const { parent, pathId } = useMenu(ins, toRef(props, 'id'))
-const sub = inject<SubMenu>(`submenu:${parent.value?.uid}`)
+const instance = getCurrentInstance()!
+const { ui, attrs } = useCore('menu-item', toRef(props, 'ui'), config)
 
-const router = useRouter()
-const location: ComputedRef<string> = computed(() => String(router.currentRoute.value.name))
-const isItemActive = computed(() => props.id === root?.activeId || props.routes.includes(location.value))
-const iconSize = computed(() => ui.value.item.icons[root?.props.size || 'md'])
+const rootMenu = inject<Menu>('rootMenu')
+const { parent, path } = useMenu(instance, toRef(props, 'id'))
+const subMenu = inject<SubMenu>(`subMenu:${parent.value.uid}`)
 
-const menuItem: MenuItem = reactive({
-  id: String(props.id),
-  path: pathId,
-  active: isItemActive,
+const active = computed(() => props.id === rootMenu.activeIndex)
+const item: MenuItem = reactive({
+  id: props.id,
+  path,
+  active,
 })
 
 const handleClick = () => {
   if (!props.disabled) {
-    root.handleItemClick({
-      id: String(props.id),
-      path: pathId.value,
+    rootMenu.handleMenuItemClick({
+      id: props.id,
+      path: path.value,
       route: props.route,
     })
-    emits('click', menuItem)
+    emit('click', item)
   }
 }
 
-const item_order = ref<number>(0)
-
 onMounted(() => {
-  sub?.addMenu(menuItem)
-  root.addItem(menuItem)
-  item_order.value = props.order ?? Object.keys(root.items).length + 1
+  subMenu.addSubMenu(item)
+  rootMenu.addMenuItem(item)
 })
 
 onBeforeUnmount(() => {
-  sub?.removeMenu(menuItem)
-  root.removeItem(menuItem)
+  subMenu.removeSubMenu(item)
+  rootMenu.removeMenuItem(item)
 })
 
-const wrapperClass = computed(() => twMerge(twJoin(ui.value.item.wrapper, isItemActive.value && ui.value.item.active, ui.value.item.fonts[root?.props.size || 'md'], ui.value.item.rounded[root?.props.size || 'md'], ui.value.item.height[root?.props.size || 'md'], ui.value.item.hover), props.class))
-const contentsClass = computed(() => twJoin(ui.value.item.contents.base, isItemActive.value && ui.value.item.contents.active))
+const iconSize = computed(() => ui.value.item.icons[rootMenu.props.size || 'md'])
+
+const wrapperClass = computed(() => twMerge(twJoin(ui.value.item.wrapper, active.value && ui.value.item.active, ui.value.item.fonts[rootMenu.props.size || 'md'], ui.value.item.rounded[rootMenu.props.size || 'md'], ui.value.item.height[rootMenu.props.size || 'md'], ui.value.item.hover), props.class))
+const contentsClass = computed(() => twJoin(ui.value.item.contents.base, active.value && ui.value.item.contents.active))
 </script>
 
 <template>
@@ -70,10 +63,8 @@ const contentsClass = computed(() => twJoin(ui.value.item.contents.base, isItemA
     role="menuitem"
     tabindex="-1"
     type="button"
-    :style="{
-      order: item_order,
-    }"
     :disabled="disabled"
+    v-bind="attrs"
     @click="handleClick"
   >
     <span :class="contentsClass">
@@ -107,22 +98,18 @@ type Props = {
   id?: string
   title: string
   icon?: string
-  order?: number | undefined
   route?: RouteLocationRaw
-  routes?: Array<string>
   disabled?: boolean
-  soon?: boolean
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 
-export type MenuItem = {
+export interface MenuItem {
   id: string
   path: string[]
   active: boolean
 }
-
-export type MenuItemClicked = {
+export interface MenuItemClicked {
   id: string
   path: string[]
   route?: RouteLocationRaw

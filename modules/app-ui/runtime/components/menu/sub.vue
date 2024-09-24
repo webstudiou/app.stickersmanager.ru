@@ -13,84 +13,90 @@ const props = withDefaults(defineProps<Props>(), {
 const ins = getCurrentInstance()!
 const { ui } = useCore('menu-sub', toRef(props, 'ui'), config)
 
-const { pathId, parent } = useMenu(ins, computed(() => props.id))
-const root = inject<Menu>('menu')!
-const sub = inject<SubMenu>(`submenu:${parent.value!.uid}`)!
+const { path, parent } = useMenu(
+  ins,
+  computed(() => props.id),
+)
+
+const rootMenu = inject<Menu>('rootMenu')
+const subMenu = inject<SubMenu>(`subMenu:${parent.value!.uid}`)
 
 const items = ref<Menu['items']>({})
-const subs = ref<Menu['subs']>({})
+const subMenus = ref<Menu['subMenus']>({})
 
 const mouseInChild = ref(false)
-const isSubMenuOpened = computed(() => root.opens.includes(props.id))
-const isActive = computed(() => {
-  let is_active = false
+
+const opened = computed(() => rootMenu.openedMenus.includes(props.id))
+const active = computed(() => {
+  let isActive = false
 
   Object.values(items.value).forEach((item) => {
     if (item.active) {
-      is_active = true
+      isActive = true
     }
   })
 
-  Object.values(subs.value).forEach((subItem) => {
+  Object.values(subMenus.value).forEach((subItem) => {
     if (subItem.active) {
-      is_active = true
+      isActive = true
     }
   })
 
-  return is_active
+  return isActive
 })
 
 const item = reactive({
   id: props.id,
-  path: pathId.value,
-  active: isActive,
+  path,
+  active,
 })
 
 const handleClick = () => {
   if (props.disabled) return
 
-  root.handleMenuClick({
+  rootMenu.handleSubMenuClick({
     id: props.id,
-    path: pathId.value,
-    active: isActive.value,
+    path: path.value,
+    active: active.value,
   })
 }
 
-onMounted(() => {
-  root.addMenu(item)
-  sub.addMenu(item)
-})
-
-onBeforeUnmount(() => {
-  sub.removeMenu(item)
-  root.removeMenu(item)
-})
-
 {
-  const addMenu: SubMenu['addMenu'] = (item) => {
-    subs.value[item.id] = item
+  const addSubMenu: SubMenu['addSubMenu'] = (item) => {
+    subMenus.value[item.id] = item
   }
-  const removeMenu: SubMenu['removeMenu'] = (item: MenuItem) => {
+  const removeSubMenu: SubMenu['removeSubMenu'] = (item) => {
     /**/
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-    delete subs.value[item.id]
+    delete subMenus.value[item.id]
   }
-  provide<SubMenu>(`submenu:${ins.uid}`, {
-    addMenu,
-    removeMenu,
+  provide<SubMenu>(`subMenu:${ins.uid}`, {
+    addSubMenu,
+    removeSubMenu,
     mouseInChild,
-    level: sub.level + 1,
+    level: subMenu.level + 1,
   })
 }
 
 defineExpose({
-  opened: isSubMenuOpened,
+  opened,
+})
+
+onMounted(() => {
+  rootMenu.addSubMenu(item)
+  subMenu.addSubMenu(item)
+})
+
+onBeforeUnmount(() => {
+  subMenu.removeSubMenu(item)
+  rootMenu.removeSubMenu(item)
 })
 
 const wrapperClass = computed(() => twMerge(twJoin(ui.value.sub.section), props.class))
-const itemWrapperClass = computed(() => twJoin(ui.value.item.wrapper, isSubMenuOpened.value && ui.value.item.active, ui.value.item.fonts[root?.props.size || 'md'], ui.value.item.rounded[root?.props.size || 'md'], ui.value.item.height[root?.props.size || 'md'], ui.value.item.hover))
-const itemContentsClass = computed(() => twJoin(ui.value.item.contents.base, isSubMenuOpened.value && ui.value.item.contents.active))
-const iconSize = computed(() => ui.value.item.icons[root?.props.size || 'md'])
+const menuWrapperClass = computed(() => twMerge(twJoin(ui.value.root.wrapper), 'ml-2.5'))
+const itemWrapperClass = computed(() => twJoin(ui.value.item.wrapper, opened.value && ui.value.item.active, ui.value.item.fonts[rootMenu.props.size || 'md'], ui.value.item.rounded[rootMenu.props.size || 'md'], ui.value.item.height[rootMenu.props.size || 'md'], ui.value.item.hover))
+const itemContentsClass = computed(() => twJoin(ui.value.item.contents.base, opened.value && ui.value.item.contents.active))
+const iconSize = computed(() => ui.value.item.icons[rootMenu.props.size || 'md'])
 </script>
 
 <template>
@@ -100,9 +106,6 @@ const iconSize = computed(() => ui.value.item.icons[root?.props.size || 'md'])
       role="menuitem"
       tabindex="-1"
       type="button"
-      :style="{
-        order: 0,
-      }"
       :disabled
       @click="handleClick"
     >
@@ -117,21 +120,19 @@ const iconSize = computed(() => ui.value.item.icons[root?.props.size || 'md'])
         </span>
         <els-icon
           name="chevron-right"
-          :class="['transition-all', isSubMenuOpened && 'rotate-90']"
-          :size="root?.props.size || 'md'"
+          :class="['transition-all', opened && 'rotate-90']"
+          :size="rootMenu.props.size || 'md'"
         />
       </span>
     </button>
 
     <els-transition-collapse>
-      <els-menu
-        v-show="isSubMenuOpened"
-        :id
-        class="ml-2.5"
-        :size="root?.props.size || 'md'"
+      <div
+        v-show="opened"
+        :class="menuWrapperClass"
       >
         <slot />
-      </els-menu>
+      </div>
     </els-transition-collapse>
   </els-menu-section>
 </template>
@@ -154,13 +155,13 @@ type Props = {
   icon?: string
   disabled?: boolean
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 
-export type SubMenu = {
-  addMenu: (item: MenuItem) => void
-  removeMenu: (item: MenuItem) => void
-
+export interface SubMenu {
+  addSubMenu: (item: MenuItem) => void
+  removeSubMenu: (item: MenuItem) => void
+  handleMouseleave?: (deepDispatch: boolean) => void
   mouseInChild: Ref<boolean>
   level: number
 }

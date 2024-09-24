@@ -11,6 +11,8 @@ export interface ModuleOptions {
   global?: boolean
   safelistColors?: string[]
   disableGlobalStyles?: boolean
+  routerOptions?: boolean
+  customScrollbars?: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -26,9 +28,32 @@ export default defineNuxtModule<ModuleOptions>({
     prefix: 'els',
     safelistColors: ['primary'],
     disableGlobalStyles: false,
+    routerOptions: undefined as boolean | undefined,
+    customScrollbars: true,
   },
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url)
+
+    if (_options.routerOptions || _options.routerOptions === undefined) {
+      _nuxt.hook('pages:routerOptions', ({ files }: { files: Array<any> }) => {
+        const customRouterOptions = files.find(file => /\/app\/router\.options\.(ts|js)$/.exec(file.path))
+        if (_options.routerOptions === undefined && customRouterOptions) {
+          console.warn(`You seem to have a custom router.options file \`${customRouterOptions.path}\`\nThe scrollBehavior will be overriden with ui-pro own router.options unless you set \`app-ui: { routerOptions: false }\` in your nuxt.config\nSet \`app-ui: { routerOptions: true }\` to disable this warning`)
+        }
+        files.push({
+          path: resolve('runtime/app/router.options.ts'),
+          optional: true,
+        })
+      })
+    }
+
+    if (_options.customScrollbars) {
+      addPlugin({
+        src: resolve('runtime/plugins/03.scrollbar.client.ts'),
+      })
+
+      _nuxt.options.css.push(resolve('runtime/assets/css/scrollbars.css'))
+    }
 
     // Transpile runtime
     const runtimeDir = resolve('./runtime')
@@ -396,7 +421,7 @@ export default defineNuxtModule<ModuleOptions>({
       src: resolve(runtimeDir, 'plugins', '02.vars'),
     })
     addPlugin({
-      src: resolve(runtimeDir, 'plugins', '03.scrollbar.client'),
+      src: resolve(runtimeDir, 'plugins', '04.slideovers'),
     })
 
     // Components
@@ -406,6 +431,9 @@ export default defineNuxtModule<ModuleOptions>({
       global: _options.global,
       watch: false,
     })
+
+    // Utils
+    addImportsDir(resolve(runtimeDir, 'utils'))
 
     // Composables
     addImportsDir(resolve(runtimeDir, 'composables'))

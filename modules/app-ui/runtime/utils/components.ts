@@ -7,28 +7,28 @@ export const mutable = <T extends readonly any[] | Record<string, unknown>>(val:
 export const checkIndexPath = (path: unknown): path is string[] => Array.isArray(path) && path.every(path => isString(path))
 
 export function useMenu(instance: ComponentInternalInstance, currentId: Ref<string>) {
-  const pathId = computed(() => {
+  const path = computed(() => {
     let parent = instance.parent!
-    const path = [currentId.value]
+    const _path = [currentId.value]
     while (parent.type.name !== 'ElsMenu') {
       if (parent.props.id) {
-        path.unshift(parent.props.id as string)
+        _path.unshift(parent.props.id as string)
       }
       parent = parent.parent!
     }
-    return path
+    return _path
   })
 
   const parent = computed(() => {
-    let parent = instance.parent
-    while (parent && !['ElsMenu', 'ElsMenuSub'].includes(parent.type.name!)) {
-      parent = parent.parent
+    let _parent = instance.parent
+    while (_parent && !['ElsMenu', 'ElsMenuSub'].includes(_parent.type.name!)) {
+      _parent = _parent.parent
     }
-    return parent!
+    return _parent!
   })
 
   return {
     parent,
-    pathId,
+    path,
   }
 }

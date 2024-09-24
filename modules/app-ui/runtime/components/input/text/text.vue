@@ -112,10 +112,6 @@ onMounted(() => {
       :class="ui.label"
     >
       {{ useLangs(title) }}
-      <sup
-        v-if="isRequired"
-        class="text-danger"
-      >*</sup>
     </label>
     <div :class="contentsClass">
       <div
@@ -162,10 +158,6 @@ onMounted(() => {
           :style="labelStyle"
         >
           {{ useLangs(title || placeholder) }}
-          <sup
-            v-if="isRequired"
-            class="text-danger"
-          >*</sup>
         </label>
       </div>
       <div
@@ -188,17 +180,14 @@ onMounted(() => {
         />
       </div>
     </div>
-    <transition
-      enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut"
-    >
+    <els-transition-collapse>
       <div
         v-if="error || hint"
         :class="errorClass"
       >
         {{ error ? useLangs(String(error)) : useLangs(hint || ' ') }}
       </div>
-    </transition>
+    </els-transition-collapse>
   </div>
 </template>
 
@@ -211,7 +200,7 @@ import { inputText as el } from '#app-ui/configs'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 
-const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.inputText, el)
+export const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.inputText, el)
 
 type Props = {
   id?: string
@@ -247,6 +236,6 @@ type Props = {
   size?: ELEMENTS.SIZE
   inputmode?: HTMLAttributes['inputmode']
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 </script>

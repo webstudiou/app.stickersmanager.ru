@@ -52,7 +52,7 @@ const iconSize = computed(() => ui.value.icons[props.size])
 
 <script lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { mergeConfig, twMerge, twJoin } from '#app-ui/utils'
+import { twJoin, twMerge, mergeConfig } from '#imports'
 import { pageInfo as el } from '#app-ui/configs'
 // @ts-expect-error
 import appConfig from '#build/app.config'

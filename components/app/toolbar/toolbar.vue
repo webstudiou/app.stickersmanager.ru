@@ -40,12 +40,12 @@ const wrapperClass = computed(() => twMerge(twJoin(ui.value.wrapper, props.borde
 
 <script lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { mergeConfig, twMerge, twJoin } from '#app-ui/utils'
+import { twJoin, twMerge, mergeConfig } from '#imports'
 import { toolbar as el } from '#app-ui/configs'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 
-const config = mergeConfig<typeof el>(appConfig.ui?.strategy as Strategy, appConfig.ui.toolbar, el)
+const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.toolbar, el)
 
 type Props = {
   borderBottom?: boolean

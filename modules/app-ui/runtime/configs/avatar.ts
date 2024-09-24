@@ -1,6 +1,6 @@
 export default {
   wrapper: {
-    'base': 'rounded relative select-none transition-all shadow-[inset_0_0_0_0_rgba(0,0,0,0.05)] flex-shrink-0 z-1 group bg-backgrounds-secondary [&.is-last]:font-semibold [&.avatars-items]:hover:-translate-x-2.5',
+    'base': 'rounded relative select-none transition-all shadow-[inset_0_0_0_0_rgba(0,0,0,0.05)] flex-shrink-0 shrink-0 z-1 group bg-backgrounds-secondary [&.is-last]:font-semibold [&.avatars-items]:hover:-translate-x-2.5',
     'xs': 'h-xs w-xs text-xs',
     'sm': 'h-sm w-sm text-sm',
     'md': 'h-md w-md text-md',

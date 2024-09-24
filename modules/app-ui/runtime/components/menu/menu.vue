@@ -5,9 +5,9 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<Props>(), {
-  activeId: undefined,
-  opens: () => mutable([] as const),
-  uniques: true,
+  defaultId: '',
+  openIds: () => mutable([] as const),
+  unique: false,
   router: false,
   size: 'md',
   class: undefined,
@@ -15,54 +15,50 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emits = defineEmits({
-  ['close']: (id: string, path: string[]) => isString(id) && checkIndexPath(path),
-  ['open']: (id: string, path: string[]) => isString(id) && checkIndexPath(path),
-  ['select']: (
-    id: string,
-    path: string[],
-    item: MenuItemClicked,
-    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-    routerResult?: Promise<void | NavigationFailure>,
-  ) => isString(id) && checkIndexPath(path) && isObject(item) && (routerResult === undefined || routerResult instanceof Promise),
+  close: (id: string, path: string[]) => isString(id) && checkIndexPath(path),
+  open: (id: string, path: string[]) => isString(id) && checkIndexPath(path),
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+  select: (id: string, path: string[], item: MenuItemClicked, routerResult?: Promise<void | NavigationFailure>) => isString(id) && checkIndexPath(path) && isObject(item) && (routerResult === undefined || routerResult instanceof Promise),
 })
 
 const ins = getCurrentInstance()!
+const vue_router = ins.appContext.config.globalProperties.$router as Router
+
 const { ui, attrs } = useCore('menu', toRef(props, 'ui'), config)
 
-const vueRouter = useRouter()
-const MenuRef = ref<HTMLUListElement>()
-const opens = ref<Menu['opens']>(props.opens && props.opens.slice(0))
-const activeId = ref<Menu['activeId']>(props.activeId)
+const openedMenus = ref<Menu['openedMenus']>(props.openIds ? props.openIds.slice(0) : [])
+const activeIndex = ref<Menu['activeIndex']>(props.defaultId)
 const items = ref<Menu['items']>({})
-const subs = ref<Menu['subs']>({})
+const subMenus = ref<Menu['subMenus']>({})
 
-const init = () => {
-  const activeItem = activeId.value && items.value[activeId.value]
+const initMenu = () => {
+  const activeItem = activeIndex.value && items.value[activeIndex.value]
   if (!activeItem) return
 
-  const indexPath = activeItem.path
+  const path = activeItem.path
 
-  indexPath.forEach((index: string) => {
-    const subMenu = subs.value[index]
-    if (subMenu) openMenu(index, subMenu.path)
+  path.forEach((id) => {
+    const subMenu = subMenus.value[id]
+    if (subMenu) openMenu(id, subMenu.path)
   })
 }
 
 const openMenu: Menu['openMenu'] = (id, path) => {
-  if (opens.value.includes(id)) return
+  if (openedMenus.value.includes(id)) return
 
-  if (props.uniques) {
-    opens.value = opens.value.filter((index: string) => path.includes(index))
+  if (props.unique) {
+    openedMenus.value = openedMenus.value.filter((id: string) =>
+      path.includes(id),
+    )
   }
-
-  opens.value.push(id)
+  openedMenus.value.push(id)
   emits('open', id, path)
 }
 
-const close = (index: string) => {
-  const i = opens.value.indexOf(index)
+const close = (id: string) => {
+  const i = openedMenus.value.indexOf(id)
   if (i !== -1) {
-    opens.value.splice(i, 1)
+    openedMenus.value.splice(i, 1)
   }
 }
 
@@ -71,106 +67,114 @@ const closeMenu: Menu['closeMenu'] = (id, path) => {
   emits('close', id, path)
 }
 
-const handleMenuClick: ({ id, path }: { id: any, path: any }) => void = ({ id, path }) => {
-  if (opens.value.includes(id)) {
-    closeMenu(id, path)
-  }
-  else {
-    openMenu(id, path)
+const handleSubMenuClick: Menu['handleSubMenuClick'] = ({ id, path }) => {
+  switch (openedMenus.value.includes(id)) {
+    case true: {
+      closeMenu(id, path)
+      break
+    }
+    default: {
+      openMenu(id, path)
+      break
+    }
   }
 }
 
-const handleItemClick: Menu['handleItemClick'] = (menuItem: MenuItemClicked) => {
+const handleMenuItemClick: Menu['handleMenuItemClick'] = (
+  menuItem,
+) => {
   const { id, path } = menuItem
-
   if (isNil(id) || isNil(path)) return
 
-  if (props.router && vueRouter) {
+  if (props.router && vue_router) {
     const route = menuItem.route || id
-    const routerResult = vueRouter.push(route).then((res) => {
-      if (!res) activeId.value = id
+    const routerResult = vue_router.push(route).then((res) => {
+      if (!res) activeIndex.value = id
       return res
     })
     emits('select', id, path, { id, path, route }, routerResult)
   }
   else {
-    activeId.value = id
-    emits('select', id, path, { id, path }, undefined)
+    activeIndex.value = id
+    emits('select', id, path, { id, path })
   }
 }
 
 const updateActiveIndex = (val: string) => {
   const itemsInData = items.value
-  const item = itemsInData[val] || (activeId.value && itemsInData[activeId.value]) || itemsInData[props.activeId]
+  const item = itemsInData[val] || (activeIndex.value && itemsInData[activeIndex.value]) || itemsInData[props.defaultId]
 
   if (item) {
-    activeId.value = item.id
+    activeIndex.value = item.id
   }
   else {
-    activeId.value = val
+    activeIndex.value = val
   }
 }
 
 watch(
-  () => props.activeId,
+  () => props.defaultId,
   (currentActive) => {
     if (!items.value[currentActive]) {
-      activeId.value = ''
+      activeIndex.value = ''
     }
     updateActiveIndex(currentActive)
   },
 )
 
-watch(items.value, init)
+watch(items.value, initMenu)
+
+const mouseInChild = ref(false)
 
 {
-  const addMenu: Menu['addMenu'] = (item) => {
-    subs.value[item.id] = item
+  const addSubMenu: Menu['addSubMenu'] = (item) => {
+    subMenus.value[item.id] = item
   }
 
-  const removeMenu: Menu['removeMenu'] = (item) => {
+  const removeSubMenu: Menu['removeSubMenu'] = (item) => {
+    /**/
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-    delete subs.value[item.id]
+    delete subMenus.value[item.id]
   }
 
-  const addItem: Menu['addItem'] = (item: MenuItem) => {
+  const addMenuItem: Menu['addMenuItem'] = (item) => {
     items.value[item.id] = item
   }
 
-  const removeItem: Menu['removeItem'] = (item: MenuItem) => {
+  const removeMenuItem: Menu['removeMenuItem'] = (item) => {
+    /**/
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete items.value[item.id]
   }
-
   provide<Menu>(
-    'menu',
+    'rootMenu',
     reactive({
       props,
-      opens,
+      openedMenus,
       items,
-      subs,
-      activeId,
+      subMenus,
+      activeIndex,
 
-      addItem,
-      removeItem,
-      addMenu,
-      removeMenu,
+      addMenuItem,
+      removeMenuItem,
+      addSubMenu,
+      removeSubMenu,
       openMenu,
       closeMenu,
-      handleItemClick,
-      handleMenuClick,
+      handleMenuItemClick,
+      handleSubMenuClick,
     }),
   )
-  provide<SubMenu>(`submenu:${ins.uid}`, {
-    addMenu,
-    removeMenu,
-    mouseInChild: ref(false),
+  provide<SubMenu>(`subMenu:${ins.uid}`, {
+    addSubMenu,
+    removeSubMenu,
+    mouseInChild,
     level: 0,
   })
 }
 
 const open = (id: string) => {
-  const { path } = subs.value[id]
+  const { path } = subMenus.value[id]
   path.forEach(i => openMenu(i, path))
 }
 
@@ -184,9 +188,8 @@ const wrapperClass = computed(() => twMerge(twJoin(ui.value.root.wrapper), props
 
 <template>
   <div
-    ref="MenuRef"
-    role="menubar"
     :class="wrapperClass"
+    role="menubar"
     v-bind="{ ...attrs }"
   >
     <slot />
@@ -194,7 +197,7 @@ const wrapperClass = computed(() => twMerge(twJoin(ui.value.root.wrapper), props
 </template>
 
 <script lang="ts">
-import type { NavigationFailure } from 'vue-router'
+import type { NavigationFailure, Router } from 'vue-router'
 import type { HTMLAttributes } from 'vue'
 import type { SubMenu } from './sub.vue'
 import type { MenuItem, MenuItemClicked } from './item.vue'
@@ -207,31 +210,31 @@ import appConfig from '#build/app.config'
 const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.menu, el)
 
 type Props = {
-  activeId?: string
-  opens?: Mutable<string[]>
-  uniques?: boolean
+  defaultId?: string
+  openIds?: Mutable<string[]>
+  unique?: boolean
   router?: boolean
   size?: ELEMENTS.SIZE
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 
-export type Menu = {
-  opens: string[]
+export interface Menu {
+  openedMenus: string[]
   items: Record<string, MenuItem>
-  subs: Record<string, MenuItem>
-  activeId?: string
+  subMenus: Record<string, MenuItem>
+  activeIndex?: string
   props: Props
 
-  addItem: (item: MenuItem) => void
-  removeItem: (item: MenuItem) => void
-  addMenu: (item: MenuItem) => void
-  removeMenu: (item: MenuItem) => void
+  addMenuItem: (item: MenuItem) => void
+  removeMenuItem: (item: MenuItem) => void
+  addSubMenu: (item: MenuItem) => void
+  removeSubMenu: (item: MenuItem) => void
 
   openMenu: (id: string, path: string[]) => void
   closeMenu: (id: string, path: string[]) => void
 
-  handleItemClick: (item: MenuItemClicked) => void
-  handleMenuClick: (subMenu: MenuItem) => void
+  handleMenuItemClick: (item: MenuItemClicked) => void
+  handleSubMenuClick: (subMenu: MenuItem) => void
 }
 </script>

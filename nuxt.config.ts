@@ -121,6 +121,9 @@ export default defineNuxtConfig({
       Form: 'ElsForm',
     },
   },
+  appLicense: {
+    license: '0595d19d-65d3-4b73-b917-1fd32d9a7b0e',
+  },
   eslint: {
     config: {
       stylistic: true,

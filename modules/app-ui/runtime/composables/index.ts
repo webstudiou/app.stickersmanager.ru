@@ -1,2 +1,6 @@
 export * from './useLangs'
 export * from './useCore'
+export * from './useSlideover'
+export * from './usePopper'
+export * from './useToast'
+export * from './useTimer'

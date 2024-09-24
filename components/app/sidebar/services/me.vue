@@ -28,10 +28,7 @@ const links = [
 
 <template>
   <div class="tablet:m-2.5 mt-0">
-    <els-menu
-      :active-id="location"
-      router
-    >
+    <els-menu :active-id="location" router>
       <els-menu-header title="pages.me.index.headings.root" />
       <els-menu-item
         v-for="link in links"

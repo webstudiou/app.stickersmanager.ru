@@ -26,7 +26,7 @@ const wrapperClass = computed(() => twMerge(twJoin(ui.value.wrapper, (props.scro
 
 <script lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { twJoin, twMerge, mergeConfig } from '#app-ui/utils'
+import { twJoin, twMerge, mergeConfig } from '#imports'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 

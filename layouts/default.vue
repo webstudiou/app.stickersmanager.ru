@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useStoreConfigs } from '~/stores/StoreConfigs'
+import { useStoreConfigs } from '~/stores'
 import { useCoreStates } from '~/composables'
 
 const storeConfigs = useStoreConfigs()
 const loading = computed(() => storeConfigs.loading)
 
 const { isSidebarOpened, isNotificationsOpened } = useCoreStates()
-const isSidebarSlideOpened = computed({
+const isSidebar = computed({
   get() {
     return isSidebarOpened.value
   },
@@ -14,7 +14,7 @@ const isSidebarSlideOpened = computed({
     isSidebarOpened.value = value
   },
 })
-const isNotificationSlideOpened = computed({
+const isNotifications = computed({
   get() {
     return isNotificationsOpened.value
   },
@@ -23,8 +23,8 @@ const isNotificationSlideOpened = computed({
   },
 })
 
-provide('isSidebarOpened', isSidebarSlideOpened)
-provide('isNotificationOpened', { isNotificationSlideOpened })
+provide('isSidebar', isSidebar)
+provide('isNotifications', { isNotifications })
 </script>
 
 <template>
@@ -47,6 +47,30 @@ provide('isNotificationOpened', { isNotificationSlideOpened })
             <els-notifications />
           </div>
         </div>
+
+        <els-slideover
+          v-model="isSidebar"
+          appear
+          side="left"
+          class="tablet:hidden"
+        >
+          <div class="flex grow justify-between overflow-hidden">
+            <div class="flex flex-col w-full items-stretch relative flex-shrink-0 bg-backgrounds-primary p-2.5">
+              <app-sidebar-slave-header />
+              <app-sidebar-services />
+              <app-sidebar-slave-footer />
+            </div>
+          </div>
+        </els-slideover>
+
+        <els-slideover
+          v-model="isNotifications"
+          appear
+          side="right"
+          :ui="{ width: 'tablet:max-w-[500px]' }"
+        >
+          <app-notifications />
+        </els-slideover>
       </template>
 
       <template #fallback>

@@ -86,20 +86,10 @@ onMounted(async () => {
     :duration="250"
     v-bind="ui.transition"
   >
-    <div
-      v-if="datasets.slide === 1"
-      :class="slideWrapperClass"
-    >
+    <div v-if="datasets.slide === 1" :class="slideWrapperClass">
       <auth-header to="/" />
-      <auth-title
-        title="pages.sign-in.index.pre-headers.1.title"
-        description="pages.sign-in.index.pre-headers.1.description"
-      />
-      <ElsForm
-        v-slot="{ isSubmitting, meta }"
-        class="flex flex-col gap-2.5 tablet:gap-5"
-        @submit="handleSignMe"
-      >
+      <auth-title title="pages.sign-in.index.pre-headers.1.title" description="pages.sign-in.index.pre-headers.1.description" />
+      <ElsForm v-slot="{ isSubmitting, meta }" class="flex flex-col gap-2.5 tablet:gap-5" @submit="handleSignMe">
         <els-input-text
           v-model="datasets.username"
           name="username"
@@ -118,33 +108,15 @@ onMounted(async () => {
           type="submit"
         />
       </ElsForm>
-      <auth-links
-        question="pages.sign-in.index.links.sign-up.title"
-        answer="pages.sign-in.index.links.sign-up.link"
-        :to="{ name: 'sign-up' }"
-      />
+      <auth-links question="pages.sign-in.index.links.sign-up.title" answer="pages.sign-in.index.links.sign-up.link" :to="{ name: 'sign-up' }" />
     </div>
-    <div
-      v-else-if="datasets.slide === 2"
-      :class="slideWrapperClass"
-    >
+    <div v-else-if="datasets.slide === 2" :class="slideWrapperClass">
       <auth-header to="/">
-        <els-avatar
-          size="2xl"
-          :alt="datasets.name"
-          :src="datasets.image"
-        />
+        <els-avatar size="2xl" :alt="datasets.name" :src="datasets.image" />
       </auth-header>
-      <auth-title
-        :title="useLangs('pages.sign-in.index.pre-headers.2.title', { name: datasets.name })"
-        description="pages.sign-in.index.pre-headers.2.description"
-      />
+      <auth-title :title="useLangs('pages.sign-in.index.pre-headers.2.title', { name: datasets.name })" description="pages.sign-in.index.pre-headers.2.description" />
 
-      <els-form
-        v-slot="{ isSubmitting, meta }"
-        class="flex flex-col gap-2.5 tablet:gap-5"
-        @submit="handleSignIn"
-      >
+      <els-form v-slot="{ isSubmitting, meta }" class="flex flex-col gap-2.5 tablet:gap-5" @submit="handleSignIn">
         <els-input-text
           v-model="datasets.password"
           type="password"
@@ -165,11 +137,7 @@ onMounted(async () => {
         />
       </els-form>
 
-      <auth-links
-        question="pages.sign-in.index.links.recover.title"
-        answer="pages.sign-in.index.links.recover.link"
-        :to="{ name: 'sign-res' }"
-      />
+      <auth-links question="pages.sign-in.index.links.recover.title" answer="pages.sign-in.index.links.recover.link" :to="{ name: 'sign-res' }" />
     </div>
   </transition>
 </template>
