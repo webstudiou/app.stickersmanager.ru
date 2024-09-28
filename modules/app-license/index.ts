@@ -2,7 +2,7 @@ import { consola } from 'consola'
 import { colors } from 'consola/utils'
 import { defineNuxtModule } from '@nuxt/kit'
 import { version } from '../../package.json'
-import { validateLicense } from './license'
+// import { validateLicense } from './license'
 
 const MODULE_NAME = 'app-license'
 

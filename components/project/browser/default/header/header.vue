@@ -48,7 +48,7 @@ const storeProjects = useStoreProjects()
             <div class="relative grid grid-flow-col auto-cols-max gap-1.5 items-center py-0.5">
               <div class="flex items-center overflow-hidden cursor-pointer rounded-xs px-[4px] py-[3px] bg-backgrounds-secondary">
                 <span class="block truncate max-w-[150px]">
-                  All
+                  {{ filter }}
                 </span>
               </div>
             </div>

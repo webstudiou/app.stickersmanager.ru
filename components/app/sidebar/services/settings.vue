@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const router = useRouter()
-const location = computed(() => String(router.currentRoute.value.path.replaceAll('/', '-').replace('-', '')))
+// const router = useRouter()
+// const location = computed(() => String(router.currentRoute.value.path.replaceAll('/', '-').replace('-', '')))
 </script>
 
 <template>

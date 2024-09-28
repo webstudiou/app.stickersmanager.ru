@@ -1,9 +1,9 @@
 import type { IFetchError } from 'ofetch'
-import { useToast } from '#app-ui/composables'
+// import { useToast } from '#app-ui/composables'
 import { useStoreAuth } from '~/stores'
 
 export const useErrorHandler = async (e: IFetchError) => {
-  const toast = useToast()
+  // const toast = useToast()
 
   switch (e.statusCode) {
     case 401: {
