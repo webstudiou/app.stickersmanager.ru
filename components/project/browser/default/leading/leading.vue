@@ -32,7 +32,7 @@ const options = {
   ghostClass: 'el-ghost',
 }
 
-const isDragging = ref(false)
+// const isDragging = ref(false)
 
 function onChangeCollapse(_entry: Portfolios.NavigatorItem, collapsed: boolean) {
   _entry.collapsed = collapsed

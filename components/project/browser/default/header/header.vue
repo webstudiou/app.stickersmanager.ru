@@ -41,7 +41,7 @@ const storeProjects = useStoreProjects()
           <els-icon name="filters" class="overflow-hidden" />
         </div>
         <div class="grid grid-flow-col auto-cols-max gap-1.5 overflow-hidden text-sm items-center">
-          <div v-for="(filter, key) in storeProjects.filters" class="grid grid-flow-col auto-cols-max gap-1.5 items-center cursor-pointer rounded-sm bg-gray-6 px-[8px] select-none">
+          <div v-for="(filter, key) in storeProjects.filters" :key="key" class="grid grid-flow-col auto-cols-max gap-1.5 items-center cursor-pointer rounded-sm bg-gray-6 px-[8px] select-none">
             <div>
               {{ key }}
             </div>
