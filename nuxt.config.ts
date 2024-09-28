@@ -58,6 +58,7 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    'dayjs-nuxt',
   ],
   auth: {
     globalAppMiddleware: {
@@ -95,6 +96,12 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: 'i18n',
     },
+  },
+  dayjs: {
+    locales: ['ru'],
+    plugins: ['relativeTime', 'utc', 'timezone'],
+    defaultLocale: 'ru',
+    defaultTimezone: 'Europe/Moscow',
   },
   colorMode: {
     preference: 'system',

@@ -3,7 +3,8 @@ import { useStoreConfigs } from '~/stores'
 import { useCoreStates } from '~/composables'
 
 const storeConfigs = useStoreConfigs()
-const loading = computed(() => storeConfigs.loading)
+const storeAuth = useStoreAuth()
+const loading = computed(() => storeConfigs.loading || storeAuth.loading)
 
 const { isSidebarOpened, isNotificationsOpened } = useCoreStates()
 const isSidebar = computed({
@@ -25,17 +26,18 @@ const isNotifications = computed({
 
 provide('isSidebar', isSidebar)
 provide('isNotifications', { isNotifications })
+
+onBeforeMount(async () => {
+  await storeAuth.init()
+})
 </script>
 
 <template>
   <div class="fixed inset-0 flex overflow-hidden bg-backgrounds-secondary/50">
     <client-only fallback-tag="div">
-      <template v-if="loading">
-        <!-- Loader -->
-        <div class="flex flex-center w-full h-full">
-          <els-spinner />
-        </div>
-      </template>
+      <div v-if="loading" class="flex flex-center w-full h-full">
+        <els-spinner />
+      </div>
 
       <template v-else>
         <!-- Layout -->

@@ -40,6 +40,14 @@ declare global {
       baseUrl: string
       authEndpoint?: string
     }
+
+    interface StickerBrowserDefaultColumn {
+      key: string
+      width: number
+      visible: boolean
+    }
+
+    type StickerBrowserDefaultColumns = StickerBrowserDefaultColumn[]
 }
 
 export {}

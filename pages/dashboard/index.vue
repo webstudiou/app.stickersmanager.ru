@@ -14,10 +14,5 @@ useHead({
 </script>
 
 <template>
-  <app-page
-    scrollable
-    class="bg-backgrounds-primary"
-  >
-    <app-container />
-  </app-page>
+  <sticker-browser />
 </template>

@@ -5,6 +5,23 @@
         "headings": {
           "title": "Начало"
         }
+      },
+      "projects": {
+        "index": {
+          "headings": {
+            "title": "Проекты",
+            "all": "Все проекты"
+          }
+        }
+      },
+      "stickers": {
+        "index": {
+          "headings": {
+            "title": "Задачи",
+            "all": "Все задачи",
+            "my": "Мои задачи"
+          }
+        }
       }
     },
     "staff": {

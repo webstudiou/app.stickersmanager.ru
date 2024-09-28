@@ -3,7 +3,7 @@ const { list, title } = useCrumbs()
 </script>
 
 <template>
-  <div class="text-footnote leading-none overflow-hidden">
+  <div class="text-footnote leading-none overflow-hidden select-none">
     <div
       v-if="title"
       class="truncate text-headline font-medium leading-none mb-1"

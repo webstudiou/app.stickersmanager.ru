@@ -19,7 +19,7 @@ export const useStoreAuth = defineStore('StoreAuth', {
             window.localStorage.setItem('nuxt-app-ui-root', this.user.data.relationships.settings.data.attributes.color)
 
             const switcher = useColorMode()
-            switcher.preference = this.user.data.relationships.settings.data.attributes.themeMode
+            switcher.preference = this.user.data.relationships.settings.data.attributes.theme
           }
         })
         .catch(e => useErrorHandler(e))
@@ -37,6 +37,7 @@ export const useStoreAuth = defineStore('StoreAuth', {
   },
   getters: {
     settings: state => state.user?.data.relationships.settings || undefined,
+    dashboard: state => state.user?.data.relationships.dashboard || undefined,
   },
   persist: true,
 },

@@ -6,10 +6,12 @@ declare global {
         type: 'user'
         attributes: {
           name: string
+          image: Avatars | null
           email: string
         }
         relationships: {
           settings: Setting
+          dashboard: Dashboard
         }
       }
     }
@@ -19,11 +21,9 @@ declare global {
         id: string
         type: 'settings'
         attributes: {
-          image: Avatar | null
-
-          firstName: string
-          middleName: string
-          lastName: string
+          first_name: string
+          middle_name: string
+          last_name: string
           abouts: string
 
           address: string
@@ -37,10 +37,10 @@ declare global {
           locale: Locale
           timezone: string
 
-          themeMode: Theme
-          timeFormat: TimeFormat
-          dateFormat: DateFormat
-          weekStart: WeekStart
+          theme: Theme
+          time_format: TimeFormat
+          date_format: DateFormat
+          week: WeekStart
 
           visited: string
         }

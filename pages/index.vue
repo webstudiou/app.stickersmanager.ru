@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { setCrumbs, setTitle } = useCrumbs()
-// const toast = useToast()
+const { signIn } = useAuth()
 
 const route = useRoute()
 // const query = route.query as InviteRouteParams
@@ -48,7 +48,6 @@ async function handleSignMe() {
 }
 
 async function handleSignIn() {
-  const { signIn } = useAuth()
   await signIn('credentials', { username: datasets.username, password: datasets.password, redirect: false })
     .then(async () => {
       const nextUrl: any = route.query?.next || route.query?.callbackUrl
@@ -108,6 +107,16 @@ onMounted(async () => {
           type="submit"
         />
       </ElsForm>
+      <div>
+        <els-button
+          title="buttons.kinostore.title"
+          @click="signIn('kinostore')"
+        />
+        <els-button
+          title="buttons.yandex.title"
+          @click="signIn('yandex')"
+        />
+      </div>
       <auth-links question="pages.sign-in.index.links.sign-up.title" answer="pages.sign-in.index.links.sign-up.link" :to="{ name: 'sign-up' }" />
     </div>
     <div v-else-if="datasets.slide === 2" :class="slideWrapperClass">

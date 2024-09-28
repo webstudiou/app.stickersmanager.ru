@@ -1,5 +1,5 @@
 declare global {
-  interface Avatar {
+  interface Avatars {
     xs: string
     sm: string
     md: string

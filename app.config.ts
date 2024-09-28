@@ -20,6 +20,13 @@ export default defineAppConfig({
       'integrations': 'lucide:cable',
       'chevron-right': 'lucide:chevron-right',
       'password': 'lucide:lock',
+      'settings': 'lucide:settings',
+      'portfolio': 'lucide:folder',
+      'folder': 'lucide:folder',
+      'folder-open': 'lucide:folder-open',
+      'project': 'lucide:square-square',
+      'projects': 'lucide:folders',
+      'stickers': 'lucide:files',
     },
   },
 })
