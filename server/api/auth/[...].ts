@@ -134,7 +134,7 @@ export default NuxtAuthHandler({
       }
 
       if ((new Date(token.expires_in as string).getTime() - new Date().getTime()) < 50000) {
-        return refresh(token as Auths.Token)
+        return refresh(token as unknown as Auths.Token)
       }
 
       return token

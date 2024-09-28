@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const router = useRouter()
-const location = computed(() => String(router.currentRoute.value.name))
+const location = computed(() => String(router.currentRoute.value.path.replaceAll('/', '-').replace('-', '')))
 
 const links = [
   {
@@ -28,7 +28,7 @@ const links = [
 
 <template>
   <div class="tablet:m-2.5 mt-0">
-    <els-menu :active-id="location" router>
+    <els-menu :default-id="location" router>
       <els-menu-header title="pages.me.index.headings.root" />
       <els-menu-item
         v-for="link in links"

@@ -115,6 +115,6 @@ type Props = {
   entries?: Portfolios.NavigatorItem[]
   size?: ELEMENTS.SIZE
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 </script>

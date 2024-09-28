@@ -44,7 +44,9 @@ declare global {
     interface StickerBrowserDefaultColumn {
       key: string
       width: number
+      minWidth: number
       visible: boolean
+      resize: boolean
     }
 
     type StickerBrowserDefaultColumns = StickerBrowserDefaultColumn[]

@@ -41,6 +41,6 @@ type Props = {
   scrollable?: boolean
   loading?: boolean
   class?: HTMLAttributes['class']
-  ui?: Partial<typeof config>
+  ui?: Partial<typeof config> & { strategy?: Strategy }
 }
 </script>

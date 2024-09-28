@@ -6,6 +6,9 @@ export const useStoreProjects = defineStore('StoreProjects', {
   state: () => ({
     loading: ref<boolean>(true),
     entries: ref<Portfolios.NavigatorItem[]>([]),
+    filters: ref<Record<string, string | number | boolean>>(
+      { archive: false },
+    ),
   }),
   actions: {
     async init() {

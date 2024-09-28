@@ -6,17 +6,6 @@ export const useStoreConfigs = defineStore('StoreConfigs', {
   state: () => ({
     loading: ref<boolean>(true),
     service: ref<'dashboard' | 'knowledge' | 'staff' | 'settings' | 'storage' | 'me'>('dashboard'),
-    browser: ref<'default' | 'month' | 'week' | 'gantt' | 'matrix'>('week'),
-    columns: ref<StickerBrowserDefaultColumns>([
-      { key: 'title', visible: true, width: 350 },
-      { key: 'project', visible: true, width: 175 },
-      { key: 'board', visible: true, width: 175 },
-      { key: 'column', visible: true, width: 175 },
-      { key: 'executor', visible: true, width: 175 },
-      { key: 'dates', visible: true, width: 175 },
-      { key: 'priority', visible: true, width: 125 },
-      { key: 'tags', visible: true, width: 225 },
-    ]),
     configs: ref<Config>(),
   }),
   actions: {

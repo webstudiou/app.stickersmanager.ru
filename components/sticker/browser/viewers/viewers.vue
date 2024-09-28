@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useStoreConfigs } from '~/stores'
+import { useStoreStickers } from '~/stores'
 
-const storeConfigs = useStoreConfigs()
+const storeStickers = useStoreStickers()
 </script>
 
 <template>
   <div>
-    <button @click="storeConfigs.browser = 'default'">
+    <button @click="storeStickers.browser = 'default'">
       default
     </button>
-    <button @click="storeConfigs.browser = 'month'">
+    <button @click="storeStickers.browser = 'month'">
       month
     </button>
-    <button @click="storeConfigs.browser = 'week'">
+    <button @click="storeStickers.browser = 'week'">
       week
     </button>
   </div>

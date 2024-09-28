@@ -5,13 +5,13 @@ import { useLangs } from '#app-ui/composables'
 const { setCrumbs, setTitle } = useCrumbs()
 
 setCrumbs([
-  { name: 'pages.dashboard.stickers.index.headings.all' },
+  { name: 'pages.dashboard.stickers.index.headings.my' },
 ])
 
-setTitle('pages.dashboard.stickers.index.headings.all')
+setTitle('pages.dashboard.stickers.index.headings.my')
 
 useHead({
-  title: useLangs('pages.dashboard.stickers.index.headings.all'),
+  title: useLangs('pages.dashboard.stickers.index.headings.my'),
 })
 </script>
 
