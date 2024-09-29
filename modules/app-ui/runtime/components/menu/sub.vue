@@ -121,7 +121,7 @@ const iconSize = computed(() => ui.value.item.icons[rootMenu.props.size || 'md']
         <els-icon
           name="chevron-right"
           :class="['transition-all', opened && 'rotate-90']"
-          :size="rootMenu.props.size || 'md'"
+          :size="iconSize"
         />
       </span>
     </button>

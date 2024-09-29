@@ -59,6 +59,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     'dayjs-nuxt',
+    '@unlazy/nuxt',
   ],
   auth: {
     globalAppMiddleware: {

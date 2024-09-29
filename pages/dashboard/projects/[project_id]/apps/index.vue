@@ -17,6 +17,6 @@ useHead({
 
 <template>
   <project-entry>
-    <project-entry-default />
+    <project-entry-apps />
   </project-entry>
 </template>

@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useErrorHandler } from '~/composables'
+import { useRoute } from '#imports'
 
 export const useStoreProjects = defineStore('StoreProjects', {
   state: () => ({
     loading: ref<boolean>(true),
     entries: ref<Portfolios.NavigatorItem[]>([]),
+    entry: ref<Projects.Project>(),
     filters: ref<Record<string, string | number | boolean>>(
       { archive: false },
     ),
@@ -22,7 +24,21 @@ export const useStoreProjects = defineStore('StoreProjects', {
     },
   },
   getters: {
+    favourites(state) {
+      const items: Portfolios.NavigatorItem[] = []
 
+      function recs(i: Portfolios.NavigatorItem) {
+        if (i.favourite) items.push(i)
+
+        if (i.children) {
+          i.children.forEach(j => recs(j))
+        }
+      }
+
+      state.entries.forEach(i => recs(i))
+
+      return items
+    },
   },
   persist: true,
 },

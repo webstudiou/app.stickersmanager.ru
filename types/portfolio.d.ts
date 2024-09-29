@@ -7,6 +7,7 @@ declare global {
       sort: number
       children?: NavigatorItem[]
       collapsed?: boolean
+      favourite?: boolean
       disabled: boolean
     }
 

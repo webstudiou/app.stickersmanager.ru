@@ -49,7 +49,9 @@ const storeProjects = useStoreProjects()
         />
       </els-menu>
     </div>
+
     <portfolio-navigator />
+
     <div class="mx-2.5">
       <div class="rounded bg-gray-6 px-2.5 py-1.5 my-2.5">
         xdvcb
