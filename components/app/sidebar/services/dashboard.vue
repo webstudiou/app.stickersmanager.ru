@@ -24,6 +24,7 @@ const storeProjects = useStoreProjects()
             v-model="datasets.search"
             title="models.search.title"
             :title-fixed="false"
+            size="sm"
             fluid
             disabled
           />

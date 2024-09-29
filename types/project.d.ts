@@ -22,6 +22,7 @@ declare global {
         attributes: {
           title: string
           icon: 'google-sheets' | 'google-docs' | 'google-calendar' | 'google-forms' | 'yandex-calendar'
+          href: string
         }
       }
     }

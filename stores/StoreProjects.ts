@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useErrorHandler } from '~/composables'
-import { useRoute } from '#imports'
 
 export const useStoreProjects = defineStore('StoreProjects', {
   state: () => ({

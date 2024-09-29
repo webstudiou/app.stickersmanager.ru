@@ -52,7 +52,7 @@ const links = computed(() => [
       active-class="text-primary"
       :disabled="link.disabled"
     >
-      {{ link.key }}
+      {{ useLangs(`pages.dashboard.projects.id${link.key === 'default' ? '' : `.${link.key}`}.index.headings.title`) }}
     </els-link>
   </div>
 </template>

@@ -14,6 +14,41 @@
             "archive": "Архивные проекты",
             "favourites": "Избранные проекты"
           }
+        },
+        "id": {
+          "index": {
+            "headings": {
+              "title": "Общая информация",
+            }
+          },
+          "apps": {
+            "index": {
+              "headings": {
+                "title": "Приложения",
+              }
+            }
+          },
+          "documents": {
+            "index": {
+              "headings": {
+                "title": "Документы",
+              }
+            }
+          },
+          "settings": {
+            "index": {
+              "headings": {
+                "title": "Настройки",
+              }
+            }
+          },
+          "stickers": {
+            "index": {
+              "headings": {
+                "title": "Задачи",
+              }
+            }
+          }
         }
       },
       "stickers": {

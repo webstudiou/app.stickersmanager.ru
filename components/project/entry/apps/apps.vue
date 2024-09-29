@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { computedAsync } from '@vueuse/core'
 import { useStoreProjects } from '~/stores'
 
 const storeProjects = useStoreProjects()
-const entry = computed(() => storeProjects.entry)
+const apps = computed(() => storeProjects.entry?.data.relationships.apps || [])
 
 const IFrameRef = ref<HTMLIFrameElement | null>(null)
 
@@ -17,9 +18,34 @@ const datasets = reactive({
 const width = computed(() => datasets.minimized ? 'w-[50px]' : 'w-[300px]')
 const fullscreen = computed(() => datasets.fullscreen ? 'fixed top-0 left-0 z-[1000] h-full bg-gray-6' : '')
 
-function handleChangeSrc(src?: string) {
+const options = computedAsync(async () => {
+  return apps.value || []
+}, [], {
+  lazy: false,
+})
+
+const filteredApps = computed(() => {
+  if (!datasets.search) {
+    return apps.value
+  }
+
+  // @ts-ignore
+  return options.value.filter((option: any) => {
+    return ['title'].some((searchAttribute: any) => {
+      if (['string', 'number'].includes(typeof option)) {
+        return String(option).search(new RegExp(datasets.search, 'i')) !== -1
+      }
+
+      const child = get(option, searchAttribute)
+
+      return child !== null && child !== undefined && String(child).search(new RegExp(datasets.search, 'i')) !== -1
+    })
+  })
+})
+
+function handleChangeSrc(src: string) {
   datasets.loading = true
-  datasets.iframe = 'https://docs.google.com/spreadsheets/d/14DekKx668yr0mOM5aaJudkqyFCwVILWaT2_IiUp1l34/edit?usp=sharing'
+  datasets.iframe = src
 
   IFrameRef.value.onload = () => datasets.loading = false
 }
@@ -47,6 +73,8 @@ function handleChangeSrc(src?: string) {
                   v-model="datasets.search"
                   :ui="{ bg: 'bg-backgrounds-primary' }"
                   size="sm"
+                  title="models.search.title"
+                  :title-fixed="false"
                   fluid
                 />
               </div>
@@ -60,13 +88,19 @@ function handleChangeSrc(src?: string) {
           <div class="flex flex-col h-full overflow-hidden pb-2.5" :class="width">
             <div />
             <div class="flex flex-col p-2.5 overflow-auto">
-              <div class="relative rounded-sm mb-1.5 transition-[background-color] bg-backgrounds-primary cursor-pointer" :class="[!datasets.minimized && 'p-1.5']" @click="handleChangeSrc">
+              <div
+                v-for="app in filteredApps"
+                :key="app.data.id"
+                class="relative rounded-sm mb-1.5 transition-[background-color] bg-backgrounds-primary cursor-pointer"
+                :class="[!datasets.minimized && 'p-1.5']"
+                @click="handleChangeSrc(app.data.attributes.href)"
+              >
                 <div class="h-full transition-[background-color]">
                   <div v-if="!datasets.minimized" class="text-md truncate mr-5 mb-2.5">
-                    title
+                    {{ app.data.attributes.title }}
                   </div>
                   <div class="flex items-center gap-1.5 text-muted text-sm" :class="[datasets.minimized && 'justify-center h-sm']">
-                    <els-icon name="google-sheets" />
+                    <els-icon :name="app.data.attributes.icon" />
                     <div v-if="!datasets.minimized" class="truncate">
                       Service
                     </div>
