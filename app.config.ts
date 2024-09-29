@@ -35,6 +35,11 @@ export default defineAppConfig({
       'menu': 'lucide:menu',
       'square': 'lucide:square',
       'square-plus': 'lucide:square-plus',
+      'play': 'lucide:play',
+      'clock': 'lucide:clock',
+      'files': 'lucide:files',
+      'logs': 'lucide:logs',
+      'substickers': 'lucide:file-stack',
     },
   },
 })

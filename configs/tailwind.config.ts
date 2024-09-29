@@ -48,7 +48,7 @@ export default {
       required: 'required="true"',
       selected: 'selected="true"',
     },
-    /* aspectRatio: {
+    aspectRatio: {
       auto: 'auto',
       square: '1 / 1',
       video: '16 / 9',
@@ -61,10 +61,10 @@ export default {
     backdropInvert: ({ theme }) => theme('invert'),
     backdropOpacity: ({ theme }) => theme('opacity'),
     backdropSaturate: ({ theme }) => theme('saturate'),
-    backdropSepia: ({ theme }) => theme('sepia'), */
+    backdropSepia: ({ theme }) => theme('sepia'),
     backgroundColor: ({ theme }) => theme('colors'),
-    /* backgroundImage: {
-      none: 'none',
+    backgroundImage: {
+      'none': 'none',
       'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
       'gradient-to-tr': 'linear-gradient(to top right, var(--tw-gradient-stops))',
       'gradient-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',
@@ -73,18 +73,18 @@ export default {
       'gradient-to-bl': 'linear-gradient(to bottom left, var(--tw-gradient-stops))',
       'gradient-to-l': 'linear-gradient(to left, var(--tw-gradient-stops))',
       'gradient-to-tl': 'linear-gradient(to top left, var(--tw-gradient-stops))',
-    }, */
+    },
     backgroundOpacity: ({ theme }) => theme('opacity'),
-    /* backgroundPosition: {
-      bottom: 'bottom',
-      center: 'center',
-      left: 'left',
+    backgroundPosition: {
+      'bottom': 'bottom',
+      'center': 'center',
+      'left': 'left',
       'left-bottom': 'left bottom',
       'left-top': 'left top',
-      right: 'right',
+      'right': 'right',
       'right-bottom': 'right bottom',
       'right-top': 'right top',
-      top: 'top',
+      'top': 'top',
     },
     backgroundSize: {
       auto: 'auto',
@@ -94,14 +94,14 @@ export default {
     blur: {
       0: '0',
       none: '',
-      sm: '4px',
-      DEFAULT: '8px',
-      md: '12px',
+      /* sm: '4px', */
+      DEFAULT: '5px',
+      /* md: '12px',
       lg: '16px',
       xl: '24px',
       '2xl': '40px',
-      '3xl': '64px',
-    }, */
+      '3xl': '64px', */
+    },
     borderColor: ({ theme }) => ({
       ...theme('colors'),
       DEFAULT: theme('colors.gray-1', 'currentColor'),
@@ -109,12 +109,6 @@ export default {
     borderOpacity: ({ theme }) => theme('opacity'),
     borderRadius: {
       none: '0px',
-      /* xs: '0.065rem',
-      sm: '0.125rem',
-      DEFAULT: '0.25rem',
-      md: '0.375rem',
-      lg: '0.5rem',
-      xl: '0.75rem', */
       xs: '0.2rem',
       sm: '0.375rem',
       DEFAULT: '0.625rem',
@@ -143,20 +137,20 @@ export default {
       inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)', */
       none: 'none',
     },
-    /* boxShadowColor: ({ theme }) => theme('colors'),
-     brightness: {
-       0: '0',
-       50: '.5',
-       75: '.75',
-       90: '.9',
-       95: '.95',
-       100: '1',
-       105: '1.05',
-       110: '1.1',
-       125: '1.25',
-       150: '1.5',
-       200: '2',
-     }, */
+    /* boxShadowColor: ({ theme }) => theme('colors'), */
+    brightness: {
+      0: '0',
+      50: '.5',
+      75: '.75',
+      90: '.9',
+      95: '.95',
+      100: '1',
+      105: '1.05',
+      110: '1.1',
+      125: '1.25',
+      150: '1.5',
+      200: '2',
+    },
     caretColor: ({ theme }) => theme('colors'),
     colors: ({ colors }) => ({
       'inherit': colors.inherit,
@@ -432,7 +426,7 @@ export default {
       none: 'none',
       alternates: '\'\'',
     },
-    /* contrast: {
+    contrast: {
       0: '0',
       50: '.5',
       75: '.75',
@@ -440,7 +434,7 @@ export default {
       125: '1.25',
       150: '1.5',
       200: '2',
-    }, */
+    },
     cursor: {
       'auto': 'auto',
       'default': 'default',
@@ -583,7 +577,7 @@ export default {
       black: '900',
     },
     gap: ({ theme }) => theme('spacing'),
-    /* gradientColorStops: ({ theme }) => theme('colors'),
+    gradientColorStops: ({ theme }) => theme('colors'),
     gradientColorStopPositions: {
       '0%': '0%',
       '5%': '5%',
@@ -610,7 +604,7 @@ export default {
     grayscale: {
       0: '0',
       DEFAULT: '100%',
-    }, */
+    },
     gridAutoColumns: {
       auto: 'auto',
       min: 'min-content',
@@ -778,14 +772,14 @@ export default {
        max: 'max-content', */
       'fit': 'fit-content',
     }),
-    /* hueRotate: {
-       0: '0deg',
-       15: '15deg',
-       30: '30deg',
-       60: '60deg',
-       90: '90deg',
-       180: '180deg',
-     }, */
+    hueRotate: {
+      0: '0deg',
+      15: '15deg',
+      30: '30deg',
+      60: '60deg',
+      90: '90deg',
+      180: '180deg',
+    },
     inset: ({ theme }) => ({
       'auto': 'auto',
       ...theme('spacing'),
@@ -797,10 +791,10 @@ export default {
       '3/4': '75%',
       'full': '100%',
     }),
-    /* invert: {
+    invert: {
       0: '0',
       DEFAULT: '100%',
-    }, */
+    },
     keyframes: {
       /* spin: {
         to: {
@@ -857,14 +851,14 @@ export default {
       auto: 'auto',
       ...theme('spacing'),
     }),
-    /* lineClamp: {
+    lineClamp: {
       1: '1',
       2: '2',
       3: '3',
       4: '4',
       5: '5',
       6: '6',
-    }, */
+    },
     maxHeight: ({ theme }) => ({
       ...theme('spacing'),
       none: 'none',
@@ -916,17 +910,17 @@ export default {
       max: 'max-content',
       /* fit: 'fit-content', */
     }),
-    /* objectPosition: {
-      bottom: 'bottom',
-      center: 'center',
-      left: 'left',
+    objectPosition: {
+      'bottom': 'bottom',
+      'center': 'center',
+      'left': 'left',
       'left-bottom': 'left bottom',
       'left-top': 'left top',
-      right: 'right',
+      'right': 'right',
       'right-bottom': 'right bottom',
       'right-top': 'right top',
-      top: 'top',
-    }, */
+      'top': 'top',
+    },
     opacity: {
       0: '0',
       5: '0.05',
@@ -1022,13 +1016,13 @@ export default {
       315: '315deg',
       360: '360deg',
     },
-    /* saturate: {
+    saturate: {
       0: '0',
       50: '.5',
       100: '1',
       150: '1.5',
       200: '2',
-    }, */
+    },
     scale: {
       0: '0',
       25: '0.25',
@@ -1050,7 +1044,7 @@ export default {
       ...theme('spacing'),
     }),
     scrollPadding: ({ theme }) => theme('spacing'),
-    /* sepia: {
+    sepia: {
       0: '0',
       DEFAULT: '100%',
     },
@@ -1061,7 +1055,7 @@ export default {
       3: '3deg',
       6: '6deg',
       12: '12deg',
-    }, */
+    },
     space: ({ theme }) => ({
       ...theme('spacing'),
     }),
@@ -1105,27 +1099,27 @@ export default {
     data: {},
     textColor: ({ theme }) => theme('colors'),
     textDecorationColor: ({ theme }) => theme('colors'),
-    /* textDecorationThickness: {
-      auto: 'auto',
+    textDecorationThickness: {
+      'auto': 'auto',
       'from-font': 'from-font',
-      0: '0px',
-      1: '1px',
+      '0': '0px',
+      /* 1: '1px',
       2: '2px',
       4: '4px',
-      8: '8px',
-    }, */
+      8: '8px', */
+    },
     textIndent: ({ theme }) => ({
       ...theme('spacing'),
     }),
     textOpacity: ({ theme }) => theme('opacity'),
-    /* textUnderlineOffset: {
-       auto: 'auto',
-       0: '0px',
-       1: '1px',
+    textUnderlineOffset: {
+      auto: 'auto',
+      0: '0px',
+      /* 1: '1px',
        2: '2px',
        4: '4px',
-       8: '8px',
-     }, */
+       8: '8px', */
+    },
     transformOrigin: {
       'center': 'center',
       'top': 'top',
@@ -1141,7 +1135,7 @@ export default {
       0: '0s',
       /* 75: '75ms', */
       100: '100ms',
-      /* 150: '150ms', */
+      150: '150ms',
       250: '250ms',
       350: '350ms',
       500: '500ms',
@@ -1153,7 +1147,7 @@ export default {
       0: '0s',
       /* 75: '75ms', */
       100: '100ms',
-      /* 150: '150ms', */
+      150: '150ms',
       250: '250ms',
       350: '350ms',
       500: '500ms',

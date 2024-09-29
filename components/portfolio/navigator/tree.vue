@@ -16,7 +16,6 @@ const props = withDefaults(defineProps<Props>(), {
 const { ui, attrs } = useCore('portfolio-navigator-tree', toRef(props, 'ui'), config, toRef(props, 'class'))
 
 const route = useRoute()
-// @ts-ignore
 const project_id = computed(() => String(route.params?.project_id))
 
 const getLinkProps = (_entry: Portfolios.NavigatorItem) => {

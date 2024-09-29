@@ -14,7 +14,7 @@ const datasets = reactive({
         <div class="">
           <div class="grid grid-cols-[max-content_1fr] items-center gap-1.5 pl-2.5 cursor-text h-[--row-min-height]">
             <els-icon name="square-plus" />
-            <input class="h-full pl-[2px] border-none outline-none bg-transparent text-md border-b border-b-red">
+            <input class="h-full pl-[2px] border-none outline-none bg-transparent text-md border-transparent text-muted" placeholder="Create">
           </div>
           <sticker-browser-default-sticker v-for="i in 100" :key="i" />
         </div>
