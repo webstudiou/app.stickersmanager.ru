@@ -30,7 +30,11 @@ const services: IService[] = [
 ]
 
 const storeStickers = useStoreStickers()
-const visible = computed(() => !!storeStickers.entry)
+const entry = computed(() => storeStickers.entry)
+const visible = computed({
+  get: () => !!entry.value,
+  set: () => storeStickers.entry = undefined,
+})
 
 const MainScrollRef = ref<HTMLDivElement | null>(null)
 const SectionsRef = ref<HTMLDivElement | null>(null)

@@ -1270,7 +1270,7 @@ export default {
     },
   },
   plugins: [
-    iconsPlugin({ collections: getIconCollections('all') }),
+    iconsPlugin({ collections: getIconCollections(['lucide']) }),
     plugin(function ({ addBase }) {
       addBase({
         html: { fontSize: '1rem' },
