@@ -46,7 +46,6 @@
   "devDependencies": {
     "@egoist/tailwindcss-icons": "^1.8.1",
     "@iconify-json/lucide": "^1.2.6",
-    "@iconify/json": "^2.2.254",
     "@nuxt/eslint": "^0.5.7",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@release-it/conventional-changelog": "^8.0.2",
