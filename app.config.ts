@@ -48,6 +48,9 @@ export default defineAppConfig({
       'google-forms': 'logos:google-calendar',
       'yandex-calendar': 'logos:google-calendar',
       'empty': 'lucide:search',
+      'text': 'lucide:a-large-small',
+      'edit': 'lucide:pencil',
+      'delete': 'lucide:trash-2',
     },
   },
 })

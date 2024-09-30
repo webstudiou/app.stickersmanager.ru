@@ -6,6 +6,22 @@
           "title": "Начало"
         }
       },
+      "portfolios": {
+        "modals": {
+          "create": {
+            "headings": {
+              "title": "Новая папка",
+              "description": "Заполни поля ниже для добавления папки"
+            }
+          },
+          "edit": {
+            "headings": {
+              "title": "Изменение папки",
+              "description": "Введи изменения в поля ниже"
+            }
+          }
+        }
+      },
       "projects": {
         "index": {
           "headings": {
@@ -18,34 +34,34 @@
         "id": {
           "index": {
             "headings": {
-              "title": "Общая информация",
+              "title": "Общая информация"
             }
           },
           "apps": {
             "index": {
               "headings": {
-                "title": "Приложения",
+                "title": "Приложения"
               }
             }
           },
           "documents": {
             "index": {
               "headings": {
-                "title": "Документы",
+                "title": "Документы"
               }
             }
           },
           "settings": {
             "index": {
               "headings": {
-                "title": "Настройки",
+                "title": "Настройки"
               }
             }
           },
           "stickers": {
             "index": {
               "headings": {
-                "title": "Задачи",
+                "title": "Задачи"
               }
             }
           }
@@ -212,6 +228,9 @@
     },
     "empty": {
       "title": "Здесь ничего нет..."
+    },
+    "title": {
+      "title": "Название"
     }
   },
   "buttons": {
@@ -235,11 +254,20 @@
       "project": {
         "title": "Добавить проект"
       }
+    },
+    "save": {
+      "title": "Сохранить"
+    },
+    "edit": {
+      "title": "Изменить"
+    },
+    "delete": {
+      "title": "Удалить"
     }
   },
   "loadings": {
     "index": {
-        "title": "Загрузка..."
+      "title": "Загрузка..."
     }
   },
   "actions": {

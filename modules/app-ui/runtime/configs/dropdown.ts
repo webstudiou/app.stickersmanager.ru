@@ -12,7 +12,7 @@ export default {
   wrapper: 'relative inline-flex text-left rtl:text-right',
   container: 'z-15 group',
   trigger: 'inline-flex w-full',
-  width: 'w-[250px]',
+  width: 'min-w-[250px]',
   background: 'bg-backgrounds-primary',
   shadow: 'shadow',
   base: 'relative focus:outline-none overflow-y-auto scroll-py-1',

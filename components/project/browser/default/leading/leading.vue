@@ -47,6 +47,29 @@ const getLinkProps = (_entry: Portfolios.NavigatorItem) => {
   })
 }
 
+const getActions = (_entry: Portfolios.NavigatorItem) => {
+  const actions: DropdownItem[] = []
+  switch (_entry.type) {
+    case 'project': {
+      break
+    }
+    case 'portfolio': {
+      actions.push({
+        icon: 'edit',
+        title: 'buttons.edit.title',
+      })
+      actions.push({
+        icon: 'delete',
+        title: 'buttons.delete.title',
+      })
+      break
+    }
+    default: break
+  }
+
+  return [actions]
+}
+
 provideUseId(() => useId())
 </script>
 
@@ -94,6 +117,16 @@ provideUseId(() => useId())
                 name="chevron-right"
                 :class="['ml-auto mr-1 transition-transform', slotProps?.open && 'rotate-90 text-primary']"
               />
+
+              <els-dropdown
+                mode="hover"
+                size="sm"
+                :items="getActions(entry)"
+                :ui="{ shadow: '', width: 'min-w-[150px]' }"
+                :popper="{ strategy: 'fixed', placement: 'bottom-end' }"
+              >
+                <els-icon :size="ui.icons[size]" name="chevron-right" />
+              </els-dropdown>
             </els-link>
           </component>
           <els-transition-collapse>

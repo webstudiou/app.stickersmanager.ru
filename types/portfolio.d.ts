@@ -10,6 +10,7 @@ declare global {
       favourite?: boolean
       disabled: boolean
     }
+    type D_NavigatorItem = api.MetApiResponse<{ data: NavigatorItem }>
 
     interface NavigatorItems {
       data: NavigatorItem[]

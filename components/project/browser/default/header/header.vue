@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStoreProjects } from '~/stores'
+import { useCoreStates } from '~/composables'
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
@@ -23,6 +24,7 @@ const datasets = reactive({
 })
 
 const storeProjects = useStoreProjects()
+const { isBrowserProjectModalOpened, isBrowserFolderModalOpened } = useCoreStates()
 </script>
 
 <template>
@@ -68,8 +70,8 @@ const storeProjects = useStoreProjects()
       </div>
     </div>
     <div class="flex items-center gap-2.5">
-      <els-button title="buttons.add.project.title" />
-      <els-button title="buttons.add.folder.title" variant="bezeled" />
+      <els-button title="buttons.add.project.title" @click="isBrowserProjectModalOpened = true" />
+      <els-button title="buttons.add.folder.title" variant="bezeled" @click="isBrowserFolderModalOpened = true" />
     </div>
   </div>
 </template>

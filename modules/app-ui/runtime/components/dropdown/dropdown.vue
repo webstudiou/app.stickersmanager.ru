@@ -31,6 +31,11 @@ const menuApi = ref<any>(null)
 let openTimeout: NodeJS.Timeout | number = null
 let closeTimeout: NodeJS.Timeout | number = null
 
+enum MenuStates {
+  Open,
+  Closed,
+}
+
 onMounted(() => {
   // @ts-expect-error internals
   const menuProvides = trigger.value?.$.provides
