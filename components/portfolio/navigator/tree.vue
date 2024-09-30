@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
 const { ui, attrs } = useCore('portfolio-navigator-tree', toRef(props, 'ui'), config, toRef(props, 'class'))
 
 const route = useRoute()
-const project_id = computed(() => String(route.params?.project_id))
+const project_id = computed(() => String(route.params?.project_id || '0'))
 
 const getLinkProps = (_entry: Portfolios.NavigatorItem) => {
   return getNuxtLinkProps({
@@ -83,7 +83,7 @@ provideUseId(() => useId())
 
 <script lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { useId, useCore } from '#imports'
+import { useId, useCore, useRoute } from '#imports'
 import { basis } from '#app-ui/configs'
 // @ts-expect-error
 import appConfig from '#build/app.config'

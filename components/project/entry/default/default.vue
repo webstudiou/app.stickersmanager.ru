@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { useStoreProjects } from '#imports'
 
-const storeProjects = useStoreProjects()
-const project = computed(() => storeProjects.entry)
 </script>
 
 <template>

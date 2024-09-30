@@ -40,7 +40,7 @@ const MainScrollRef = ref<HTMLDivElement | null>(null)
 const SectionsRef = ref<HTMLDivElement | null>(null)
 const TextAreaRef = ref<HTMLTextAreaElement | null>(null)
 
-const { errorMessage: error, setTouched } = useField(() => 'title', 'required', {
+const { setTouched } = useField(() => 'title', 'required', {
   initialValue: 'props.modelValue',
   validateOnValueUpdate: true,
   syncVModel: true,

@@ -70,7 +70,7 @@ async function handleChangeDashboard(id: string) {
       :popper="{ strategy: 'absolute' }"
     >
       <div class="flex gap-1.5 overflow-hidden">
-        <els-avatar size="lg" :src="dashboard.data.attributes.image?.xxxl || '/images/defaults/avatar.png'" />
+        <els-avatar size="lg" :src="'/images/defaults/avatar.png'" />
         <div class="flex flex-col justify-center w-full overflow-hidden">
           <div class="font-medium truncate">
             {{ dashboard.data.attributes.title }}

@@ -1,5 +1,3 @@
-import type { NavigatorItems } from '~/types/portfolio'
-
 declare global {
   namespace Projects {
     interface Project {

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// eslint-disable-next-line vue/prefer-import-from-vue
+import { looseToNumber } from '@vue/shared'
+
 defineOptions({
   inheritAttrs: false,
 })
@@ -7,7 +10,7 @@ const props = withDefaults(defineProps<Props>(), {
   id: undefined,
   name: undefined,
   titleFixed: true,
-  modelModifiers: () => {},
+  modelModifiers: () => ({}),
   rows: 3,
   maxrows: 0,
   autoFocus: false,
@@ -29,8 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emits = defineEmits<{
-  (e: 'focus' | 'blur' | 'change', value: Event): void
-  (e: 'click', value: InputEvent): void
+  (e: 'focus' | 'blur' | 'change' | 'click', value: Event): void
   (e: 'update:model-value', value: string | number | null): void
 }>()
 
@@ -69,15 +71,23 @@ function blur(event: Event) {
   isFocused.value = false
 }
 
-function click(event: InputEvent) {
+function click(event: Event) {
   emits('click', event)
   isFocused.value = true
 }
 
 function change(event: Event) {
-  emits('change', event)
-  if (modelModifiers.value.lazy) update(value)
-  if (modelModifiers.value.trim) (event.target as HTMLInputElement).value = value.trim()
+  const value = (event.target as HTMLInputElement).value
+  emits('change', value)
+
+  if (modelModifiers.value.lazy) {
+    update(value)
+  }
+
+  // Update trimmed input so that it has same behavior as native input
+  if (modelModifiers.value.trim) {
+    (event.target as HTMLInputElement).value = value.trim()
+  }
 }
 
 function input(event: Event) {

@@ -40,7 +40,7 @@ function _useModal() {
   /**
    * Allows updating the modal props
    */
-  function patch<T extends Component = {}>(props: Partial<Modal & ComponentProps<T>>) {
+  function patch<T extends Component = object>(props: Partial<Modal & ComponentProps<T>>) {
     if (!modalState) return
 
     modalState.value = {

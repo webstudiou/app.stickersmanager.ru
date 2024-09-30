@@ -10,7 +10,7 @@ const emits = defineEmits<{
   (e: 'update:model-value', value: boolean): void
 }>()
 
-const { ui } = useCore('project-browser-default-header', ({}), basis, undefined, true)
+const { ui } = useCore('project-browser-default-header', null, basis, undefined, true)
 
 const toggle = computed({
   get() {
