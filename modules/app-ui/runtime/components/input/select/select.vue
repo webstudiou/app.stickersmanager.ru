@@ -46,6 +46,7 @@ const props = withDefaults(defineProps<Props>(), {
   hint: undefined,
   fluid: true,
   size: 'md',
+  sizeOptions: 'md',
   optionAttribute: 'title',
   valueAttribute: undefined,
   searchAttributes: undefined,
@@ -392,7 +393,7 @@ provideUseId(() => useId())
             <component
               :is="searchable ? HComboboxOptions : HListboxOptions"
               static
-              :class="[ui.dropdown.base, ui.dropdown.ring, ui.rounded[size], ui.dropdown.shadow, ui.dropdown.height]"
+              :class="[ui.dropdown.base, ui.dropdown.ring, ui.rounded[sizeOptions], ui.dropdown.shadow, ui.dropdown.height]"
             >
               <HComboboxInput
                 v-if="searchable"
@@ -413,7 +414,7 @@ provideUseId(() => useId())
                 :value="valueAttribute ? option[valueAttribute] : option"
                 :disabled="option.disabled"
               >
-                <li :class="[ui.options.base, ui.rounded[size], ui.paddingX[size], ui.height[size], active ? ui.options.active : ui.options.inactive, optionSelected && ui.options.selected, optionDisabled && ui.options.disabled]">
+                <li :class="[ui.options.base, ui.rounded[sizeOptions], ui.paddingX[sizeOptions], ui.height[sizeOptions], active ? ui.options.active : ui.options.inactive, optionSelected && ui.options.selected, optionDisabled && ui.options.disabled]">
                   <div :class="ui.options.container">
                     <slot
                       name="option"
@@ -424,13 +425,13 @@ provideUseId(() => useId())
                       <els-icon
                         v-if="option.icon"
                         :name="option.icon"
-                        :size="ui.icons[size]"
+                        :size="ui.icons[sizeOptions]"
                         :class="option.iconClass"
                         aria-hidden="true"
                       />
                       <els-avatar
                         v-else-if="option.avatar"
-                        v-bind="{ size: size, ...option.avatar }"
+                        v-bind="{ size: sizeOptions, ...option.avatar }"
                         aria-hidden="true"
                       />
 
@@ -449,7 +450,7 @@ provideUseId(() => useId())
                 :value="createOption"
                 as="template"
               >
-                <li :class="[ui.options.base, ui.rounded[size], ui.paddingX[size], ui.height[size], active ? ui.options.active : ui.options.inactive]">
+                <li :class="[ui.options.base, ui.rounded[sizeOptions], ui.paddingX[sizeOptions], ui.height[sizeOptions], active ? ui.options.active : ui.options.inactive]">
                   <div :class="ui.options.container">
                     <slot
                       name="option-create"
@@ -466,7 +467,7 @@ provideUseId(() => useId())
               </component>
               <p
                 v-else-if="searchable && query && !filteredOptions?.length"
-                :class="[ui.placeholder, 'mb-1.5', ui.fonts[size]]"
+                :class="[ui.placeholder, 'mb-1.5', ui.fonts[sizeOptions]]"
               >
                 <slot
                   name="option-empty"
@@ -477,7 +478,7 @@ provideUseId(() => useId())
               </p>
               <p
                 v-else-if="!filteredOptions?.length"
-                :class="[ui.placeholder, 'mb-1.5', ui.fonts[size]]"
+                :class="[ui.placeholder, 'mb-1.5', ui.fonts[sizeOptions]]"
               >
                 <slot
                   name="empty"
@@ -546,6 +547,7 @@ type Props = {
   hint?: string
   fluid?: boolean
   size?: ELEMENTS.SIZE
+  sizeOptions?: ELEMENTS.SIZE
   optionAttribute?: string
   valueAttribute?: string
   searchAttributes?: any[]

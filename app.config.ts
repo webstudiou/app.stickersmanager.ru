@@ -35,6 +35,7 @@ export default defineAppConfig({
       'menu': 'lucide:menu',
       'square': 'lucide:square',
       'square-plus': 'lucide:square-plus',
+      'square-check': 'lucide:square-check',
       'play': 'lucide:play',
       'clock': 'lucide:clock',
       'files': 'lucide:files',
@@ -51,6 +52,7 @@ export default defineAppConfig({
       'text': 'lucide:a-large-small',
       'edit': 'lucide:pencil',
       'delete': 'lucide:trash-2',
+      'check': 'lucide:check',
     },
   },
 })

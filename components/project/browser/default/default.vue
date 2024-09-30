@@ -11,7 +11,7 @@ const datasets = reactive({
 </script>
 
 <template>
-  <div class="flex flex-col flex-auto overflow-hidden bg-gray-6">
+  <div class="flex flex-col flex-auto overflow-hidden bg-gray-6 select-none">
     <project-browser-default-header v-model="datasets.filters" />
     <project-browser-default-filters v-model="datasets.filters" />
     <div class="relative flex flex-col flex-auto overflow-y-auto">
@@ -25,7 +25,7 @@ const datasets = reactive({
               class="flex w-full sticky top-0 left-0 z-3 bg-backgrounds-primary border-t border-b border-backgrounds-secondary items-center justify-start px-2.5 text-md h-[--row-min-height]"
             >
               <span class="truncate">
-                {{ useLangs('tables.title.title') }}
+                {{ useLangs('pages.dashboard.projects.tables.headings.title') }}
               </span>
             </div>
             <div class="flex flex-col w-full">
@@ -44,21 +44,21 @@ const datasets = reactive({
               class="bg-backgrounds-primary border-t border-b border-backgrounds-secondary flex items-center justify-start px-2.5 text-md h-[--row-min-height]"
             >
               <span class="truncate">
-                {{ useLangs('tables.status.title') }}
+                {{ useLangs('pages.dashboard.projects.tables.headings.status') }}
               </span>
             </div>
             <div
               class="bg-backgrounds-primary border-t border-b border-backgrounds-secondary flex items-center justify-start px-2.5 text-md h-[--row-min-height]"
             >
               <span class="truncate">
-                {{ useLangs('tables.deadlines.title') }}
+                {{ useLangs('pages.dashboard.projects.tables.headings.dates') }}
               </span>
             </div>
             <div
               class="bg-backgrounds-primary border-t border-b border-backgrounds-secondary flex items-center justify-start px-2.5 text-md h-[--row-min-height]"
             >
               <span class="truncate">
-                {{ useLangs('tables.owner.title') }}
+                {{ useLangs('pages.dashboard.projects.tables.headings.creator') }}
               </span>
             </div>
           </div>

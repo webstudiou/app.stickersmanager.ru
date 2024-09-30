@@ -19,13 +19,16 @@ const { ui, attrs } = useCore('project-browser-default-trailing', toRef(props, '
     <div :class="['flex items-center h-[calc(var(--row-min-height)-1px)]', entry.type !== 'portfolio' ? 'bg-backgrounds-primary' : 'border-b border-backgrounds-secondary']" v-bind="attrs">
       <div v-if="entry.type !== 'portfolio'" class="grid grid-cols-[repeat(3,_minmax(250px,_1fr))] items-center w-full">
         <div class="flex items-center h-[calc(var(--row-min-height)-1px)] px-2.5 bg-backgrounds-primary border-b border-backgrounds-secondary">
-          <els-marker :title="entry.title" />
+          <els-marker :title="entry.title" color="indigo" />
         </div>
         <div class="flex items-center h-[calc(var(--row-min-height)-1px)] px-2.5 bg-backgrounds-primary border-b border-backgrounds-secondary">
           ...
         </div>
-        <div class="flex items-center h-[calc(var(--row-min-height)-1px)] px-2.5 bg-backgrounds-primary border-b border-backgrounds-secondary">
-          ...
+        <div class="flex items-center h-[calc(var(--row-min-height)-1px)] px-2.5 bg-backgrounds-primary border-b border-backgrounds-secondary gap-1.5">
+          <els-avatar size="sm" />
+          <div>
+            1
+          </div>
         </div>
       </div>
     </div>
