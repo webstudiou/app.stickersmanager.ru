@@ -53,6 +53,9 @@ export default defineAppConfig({
       'edit': 'lucide:pencil',
       'delete': 'lucide:trash-2',
       'check': 'lucide:check',
+      'subscription': 'lucide:badge-cent',
+      'add-user': 'lucide:user-plus',
+      'x': 'lucide:x',
     },
   },
 })

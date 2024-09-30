@@ -11,7 +11,7 @@ declare global {
         }
         relationships: {
           settings: Setting
-          dashboard: Dashboard
+          dashboard: Dashboards.Dashboard
         }
       }
     }

@@ -6,6 +6,14 @@
           "title": "Начало"
         }
       },
+      "modals": {
+        "create": {
+          "headings": {
+            "title": "Новое рабочее пространство",
+            "description": "Заполни поля ниже для добавления рабочего пространства"
+          }
+        }
+      },
       "portfolios": {
         "modals": {
           "create": {
@@ -95,6 +103,20 @@
             "dates": "Сроки",
             "priority": "Приоритет",
             "actions": ""
+          }
+        }
+      }
+    },
+    "settings": {
+      "index": {
+        "headings": {
+          "title": "Настройки воркспейса"
+        }
+      },
+      "subscription": {
+        "index": {
+          "headings": {
+            "title": "Тарифы и оплата"
           }
         }
       }
@@ -253,6 +275,9 @@
     },
     "title": {
       "title": "Название"
+    },
+    "description": {
+      "title": "Описание"
     }
   },
   "buttons": {
@@ -275,6 +300,9 @@
       },
       "project": {
         "title": "Добавить проект"
+      },
+      "user": {
+        "title": "Пригласить в команду"
       }
     },
     "save": {
@@ -285,6 +313,12 @@
     },
     "delete": {
       "title": "Удалить"
+    },
+    "create": {
+      "title": "Создать",
+      "dashboard": {
+        "title": "Создать рабочее пространство"
+      }
     }
   },
   "loadings": {

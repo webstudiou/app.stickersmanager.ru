@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useCrumbs } from '~/composables'
-import { useStoreAuth } from '~/stores'
+import { useStoreAuth, useStoreDashboard } from '~/stores'
 import { useLangs } from '#app-ui/composables'
 
 const { setCrumbs, setTitle } = useCrumbs()
@@ -17,7 +17,8 @@ definePageMeta({
 })
 
 const storeAuth = useStoreAuth()
-const loading = computed(() => storeAuth.loading)
+const storeDashboard = useStoreDashboard()
+const loading = computed(() => storeAuth.loading || storeDashboard.loading)
 
 watch(loading, async (loadingState) => {
   if (!loadingState) {
@@ -38,6 +39,7 @@ watch(loading, async (loadingState) => {
 
 onMounted(async () => {
   await storeAuth.init()
+  await storeDashboard.init()
 })
 </script>
 

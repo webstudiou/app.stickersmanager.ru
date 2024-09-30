@@ -99,7 +99,7 @@ export default defineComponent({
         </div>
       </slot>
 
-      <span v-if="($slots.default || title) && !icon" :class="['truncate', loading && 'hidden']">
+      <span v-if="($slots.default || title) && !icon" :class="['truncate', loading && 'opacity-0']">
         <slot>
           {{ useLangs(title) }}
         </slot>

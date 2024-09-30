@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useStoreConfigs } from '~/stores'
+import { useStoreConfigs, useStoreAuth, useStoreDashboard } from '~/stores'
 import { useCoreStates } from '~/composables'
 
 const storeConfigs = useStoreConfigs()
 const storeAuth = useStoreAuth()
-const loading = computed(() => storeConfigs.loading || storeAuth.loading)
+const storeDashboard = useStoreDashboard()
+const loading = computed(() => storeConfigs.loading || storeAuth.loading || storeDashboard.loading)
 
 const { isSidebarOpened, isNotificationsOpened } = useCoreStates()
 const isSidebar = computed({
@@ -29,6 +30,7 @@ provide('isNotifications', { isNotifications })
 
 onBeforeMount(async () => {
   await storeAuth.init()
+  await storeDashboard.init()
 })
 </script>
 
