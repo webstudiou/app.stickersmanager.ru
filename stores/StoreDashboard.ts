@@ -69,7 +69,7 @@ export const useStoreDashboard = defineStore('StoreDashboard', {
     }, 300), */
   },
   getters: {
-    // subscription: state => state.current.data.relationships.subscription,
+
   },
   persist: true,
 })

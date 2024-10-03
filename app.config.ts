@@ -56,6 +56,13 @@ export default defineAppConfig({
       'subscription': 'lucide:badge-cent',
       'add-user': 'lucide:user-plus',
       'x': 'lucide:x',
+      'tags': 'lucide:tags',
+      'domains': 'lucide:globe',
+      'api': 'lucide:webhook',
+      'imports': 'lucide:combine',
+      'teams': 'lucide:baby',
+      'minus-square': 'lucide:square-minus',
+      'plus-square': 'lucide:square-plus',
     },
   },
 })

@@ -7,7 +7,26 @@ declare global {
         attributes: {
           title: string
         }
+        relationships: {
+          subscription: Subscriptions.Subscription
+        }
+        restrictions: {
+          settings: {
+            index: boolean
+          }
+        }
+        limits: Limits
       }
+    }
+
+    interface Limit {
+      use: number
+      total: number
+      percentage: number
+    }
+
+    interface Limits {
+      max_projects: Limit
     }
 
     interface NavigatorItem {

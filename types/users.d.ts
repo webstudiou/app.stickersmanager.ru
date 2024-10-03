@@ -8,6 +8,7 @@ declare global {
           name: string
           image: Avatars | null
           email: string
+          role: string
         }
         relationships: {
           settings: Setting

@@ -16,7 +16,7 @@ export default {
     label: 'absolute left-0 top-1/2 right-auto pointer-events-none w-full text-muted truncate transition',
   },
   label: 'pointer-events-none w-full truncate text-sm opacity-75 select-none',
-  input: 'outline-none flex-auto min-w-0 h-full w-full border-0 border-transparent px-0 py-2.5 m-0 truncate select-auto caret-primary',
+  input: 'outline-none flex-auto min-w-0 h-full w-full border-0 border-transparent p-0 m-0 truncate select-auto caret-primary',
   bg: 'bg-gray-6 dark:bg-backgrounds-primary',
   error: 'border-danger',
   iconsWrapper: 'flex items-center self-stretch rounded-inherit',

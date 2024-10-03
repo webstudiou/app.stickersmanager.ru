@@ -23,6 +23,7 @@ async function handleCreate() {
     .then(({ data }) => {
       storeProjects.entries.unshift(data)
       isBrowserFolderModalOpened.value = false
+      fields.title = ''
     })
     .catch(e => useErrorHandler(e))
 }
@@ -37,6 +38,7 @@ async function handleUpdate() {
   })
     .then(({ data }) => {
       isBrowserFolderModalOpened.value = false
+      fields.title = ''
     })
     .catch(e => useErrorHandler(e))
 }

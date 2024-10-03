@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useStoreProjects } from '~/stores'
+import { useLangs, useStoreAuth, useStoreProjects } from '#imports'
 
 const router = useRouter()
 const location = computed(() => String(router.currentRoute.value.path.replaceAll('/', '-').replace('-', '')))
@@ -13,6 +13,9 @@ const datasets = reactive({
 })
 
 const storeProjects = useStoreProjects()
+
+const storeAuth = useStoreAuth()
+const dashboard = computed(() => storeAuth.dashboard)
 </script>
 
 <template>
@@ -54,8 +57,10 @@ const storeProjects = useStoreProjects()
     <portfolio-navigator />
 
     <div class="mx-2.5">
-      <div class="rounded bg-gray-6 px-2.5 py-1.5 my-2.5">
-        xdvcb
+      <div v-if="dashboard.data.limits.max_projects.total !== -1" class="rounded bg-gray-6 px-2.5 py-1.5 my-2.5 text-sm text-muted">
+        <div>
+          {{ useLangs('pages.dashboard.limits.projects.used', { val: dashboard.data.limits.max_projects.use, max: dashboard.data.limits.max_projects.total }) }}
+        </div>
       </div>
 
       <els-menu :default-id="query" router>
