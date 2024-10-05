@@ -42,7 +42,12 @@ const datasets = reactive({
       <div class="relative flex cursor-text border-b border-transparent">
         <div class="sticky left-0 top-0 z-1 flex gap-1.5 items-center pl-2.5 bg-backgrounds-primary h-[--row-min-height]">
           <els-icon name="square-plus" :size="ui.size" class="text-muted" />
-          <input class="h-full border-none outline-none bg-transparent text-md border-transparent caret-primary" :placeholder="useLangs('buttons.create.sticker.title')">
+          <input
+            id="title"
+            required
+            class="h-full border-none outline-none bg-transparent text-md border-transparent caret-primary"
+            :placeholder="useLangs('buttons.create.sticker.title')"
+          >
         </div>
       </div>
       <sticker-browser-default-rows-wrapper v-for="entry in entries" :key="entry.data.id">
