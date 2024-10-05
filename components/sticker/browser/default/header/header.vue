@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useStoreStickers } from '~/stores'
+import { useStoreStickers } from '#imports'
 
 const storeStickers = useStoreStickers()
 
@@ -28,8 +28,7 @@ watch(selectedColumns, (newColumns: string[]) => {
 </script>
 
 <template>
-  <div class="sticky top-0 flex items-center bg-backgrounds-primary border-b border-backgrounds-secondary gap-1.5 z-2 pr-[4px] min-h-[--row-min-height]">
-    <div class="h-full w-[2px]" />
+  <div class="sticky top-0 flex items-center bg-backgrounds-primary border-b border-backgrounds-secondary gap-1.5 z-2 pr-2.5 min-h-[--row-min-height]">
     <sticker-browser-default-header-column v-for="column in columns" :key="column.key" :column="column" />
 
     <div class="flex ml-auto justify-end min-w-[150px]">

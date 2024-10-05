@@ -4,11 +4,23 @@ export const useResizable = (key: string, { min, max, value = 0, storage = 'cook
   min?: number
   max?: number
   value?: number
-  storage?: 'cookie' | 'local'
+  storage?: 'cookie' | 'local' | ''
 }) => {
   const el = ref<HTMLElement | null>(null)
 
-  const width = storage === 'cookie' ? useCookie<number>(key, { default: () => value }) : useStorage<number>(key, () => value)
+  const width = ref(value || 0)
+  switch (storage) {
+    case 'cookie': {
+      width.value = useCookie<number>(key, { default: () => value })
+      break
+    }
+    case 'local': {
+      width.value = useStorage<number>(key, () => value)
+      break
+    }
+    default: break
+  }
+  // const width = storage === 'cookie' ? useCookie<number>(key, { default: () => value }) : useStorage<number>(key, () => value)
 
   const isDragging = ref(false)
 

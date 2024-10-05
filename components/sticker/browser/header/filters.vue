@@ -56,6 +56,7 @@ const toggle = computed({
         <els-icon
           name="expand"
           class="overflow-hidden text-muted hover:text-labels-primary cursor-pointer transition-colors"
+          :class="[toggle && 'text-labels-primary']"
           :size="ui.size"
           @click="toggle = !toggle"
         />

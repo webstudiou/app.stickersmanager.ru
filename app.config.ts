@@ -72,6 +72,7 @@ export default defineAppConfig({
       'matrix': 'lucide:library',
       'gantt': 'lucide:square-square',
       'sort': 'lucide:list-ordered',
+      'ellipsis-vertical': 'lucide:ellipsis-vertical',
     },
   },
 })

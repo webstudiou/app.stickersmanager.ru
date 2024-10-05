@@ -4,7 +4,7 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<Props>(), {
-  size: '2em',
+  size: '1.75em',
   class: undefined,
   ui: () => ({}),
 })
