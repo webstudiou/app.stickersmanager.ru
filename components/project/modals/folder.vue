@@ -11,7 +11,7 @@ const storeProjects = useStoreProjects()
 const { isBrowserFolderModalOpened } = useCoreStates()
 
 const fields = reactive({
-  title: '',
+  title: props.folder?.title ?? '',
 })
 async function handleCreate() {
   await $fetch('/api/dashboard/portfolios/create', {
@@ -51,12 +51,6 @@ async function handle() {
     await handleCreate()
   }
 }
-
-onMounted(() => {
-  if (!props.folder) return
-
-  fields.title = props.folder.title
-})
 </script>
 
 <template>

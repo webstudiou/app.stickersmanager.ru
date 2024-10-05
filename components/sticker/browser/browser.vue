@@ -12,6 +12,7 @@ const browser = computed(() => storeStickers.browser)
     <sticker-browser-week v-else-if="browser === 'week'" />
     <sticker-browser-gantt v-else-if="browser === 'gantt'" />
     <sticker-browser-matrix v-else-if="browser === 'matrix'" />
+    <sticker-browser-boards v-else-if="browser === 'boards'" />
 
     <sticker-entry />
   </app-page>

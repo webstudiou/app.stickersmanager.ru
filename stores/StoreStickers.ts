@@ -4,7 +4,7 @@ import { ref } from 'vue'
 export const useStoreStickers = defineStore('StoreStickers', {
   state: () => ({
     loading: ref<boolean>(true),
-    browser: ref<'default' | 'month' | 'week' | 'gantt' | 'matrix'>('default'),
+    browser: ref<'default' | 'month' | 'week' | 'gantt' | 'matrix' | 'boards'>('default'),
     columns: ref<StickerBrowserDefaultColumns>([
       { key: 'title', visible: true, width: 300, minWidth: 300, resize: true },
       { key: 'id', visible: true, width: 25, minWidth: 25, resize: true },

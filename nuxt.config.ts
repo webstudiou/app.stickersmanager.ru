@@ -60,6 +60,7 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     'dayjs-nuxt',
     '@unlazy/nuxt',
+    '@morev/vue-transitions/nuxt',
   ],
   auth: {
     globalAppMiddleware: {
@@ -128,6 +129,10 @@ export default defineNuxtConfig({
     componentNames: {
       Form: 'ElsForm',
     },
+  },
+  vueTransitions: {
+    // The same options as in the plugin itself.
+    // You will get an autocomplete using Nuxt 3.
   },
   appLicense: {
     license: '0595d19d-65d3-4b73-b917-1fd32d9a7b0e',

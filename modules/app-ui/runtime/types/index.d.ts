@@ -49,6 +49,7 @@ declare global {
       rows?: number
       toolbar?: number
       footer?: number
+      size?: ELEMENTS.SIZE
       [key: string]: any
     } & DeepPartial<config, string>
 

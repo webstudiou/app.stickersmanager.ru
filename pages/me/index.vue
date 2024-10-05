@@ -20,34 +20,22 @@ const user = computed(() => storeAuth.user)
 </script>
 
 <template>
-  <app-page
-    scrollable
-    class="bg-backgrounds-primary"
-  >
+  <app-page scrollable class="bg-backgrounds-primary">
     <app-container>
       <app-page-info title="pages.me.index.pre-headers.personal-info.title">
         <template #description>
           {{ useLangs('pages.me.index.pre-headers.personal-info.description') }}
-          <els-link
-            :to="{ name: 'staff-id', params: { id: user.data.id } }"
-            class="font-medium text-labels-primary"
-          >
+          <els-link :to="{ name: 'staff-id', params: { id: user.data.id } }" class="font-medium text-labels-primary">
             «{{ useLangs('pages.staff.id.index.headings.title') }}».
           </els-link>
         </template>
       </app-page-info>
     </app-container>
     <app-container>
-      <app-page-info
-        title="pages.me.index.pre-headers.billing-address.title"
-        description="pages.me.index.pre-headers.billing-address.description"
-      />
+      <app-page-info title="pages.me.index.pre-headers.billing-address.title" description="pages.me.index.pre-headers.billing-address.description" />
     </app-container>
     <app-container>
-      <app-page-info
-        title="pages.me.index.pre-headers.others.title"
-        description="pages.me.index.pre-headers.others.description"
-      />
+      <app-page-info title="pages.me.index.pre-headers.others.title" description="pages.me.index.pre-headers.others.description" />
     </app-container>
   </app-page>
 </template>

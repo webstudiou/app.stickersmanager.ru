@@ -1,15 +1,12 @@
 <script setup lang="ts">
-
+const datasets = reactive({
+  filters: false,
+})
 </script>
 
 <template>
-  <app-page scrollable>
-    <app-container class="bg-backgrounds-primary">
-      <sticker-browser-viewers />
-    </app-container>
-  </app-page>
+  <div class="relative flex flex-col flex-auto overflow-hidden">
+    <sticker-browser-header v-model="datasets.filters" />
+    <sticker-browser-filters v-model="datasets.filters" />
+  </div>
 </template>
-
-<style scoped>
-
-</style>

@@ -17,11 +17,14 @@ const wrapperClass = computed(() => {
 </script>
 
 <template>
-  <Icon
+  <icon
     :name="name"
     :class="wrapperClass"
     :size="size"
     v-bind="{ ...attrs }"
+    :style="{
+      width: size, height: size,
+    }"
   />
 </template>
 

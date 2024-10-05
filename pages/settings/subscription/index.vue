@@ -48,7 +48,7 @@ const plans_new_ids = computed(() => {
   services.value.forEach(_plan => _plan.forEach(p => p.is_active && ids.push(p.id)))
   return ids
 })
-const plans_is_equal = computed(() => JSON.stringify(plans_ids.value) === JSON.stringify(plans_new_ids.value))
+const plans_is_equal = computed(() => JSON.stringify(plans_ids.value) === JSON.stringify(plans_new_ids.value) && fields.members === subscription.value.data.attributes.members && fields.period === subscription.value.data.attributes.interval)
 const plan_new = computed(() => {
   const plans: Subscriptions.MapPlan[] = []
   let root: Subscriptions.MapPlan = null
@@ -79,6 +79,11 @@ watch(fields, () => {
 
 async function calc() {
   if (status.value === 'pending') return
+
+  if (subscription.value.data.attributes.price === plan_new.value.price && subscription.value.data.attributes.members === fields.members) {
+    datasets.price = 0
+    return
+  }
 
   if (subscription.value.data.attributes.price == 0) {
     let amount = 0
@@ -144,7 +149,7 @@ async function pay() {
       location.href = res.data.url
     }
     else {
-      // await refresh()
+      await refresh()
     }
   })
 }

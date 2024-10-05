@@ -48,7 +48,12 @@ onBeforeMount(async () => {
           <div class="flex-col items-stretch relative w-full flex-1 flex">
             <app-header />
             <slot />
+            <!-- Notifications -->
             <els-notifications />
+            <!-- Create portfolio -->
+            <project-modals-folder />
+            <!-- Create project -->
+            <project-modals-project />
           </div>
         </div>
 

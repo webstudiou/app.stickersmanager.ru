@@ -38,6 +38,7 @@ export const useStoreAuth = defineStore('StoreAuth', {
   getters: {
     settings: state => <Users.Setting>state.user?.data.relationships.settings || undefined,
     dashboard: state => <Dashboards.Dashboard>state.user?.data.relationships.dashboard || undefined,
+    limits: state => <Dashboards.Limits>state.user?.data.relationships.dashboard.data.limits || undefined,
     subscription: state => <Subscriptions.Subscription>state.user?.data.relationships.dashboard.data.relationships.subscription || undefined,
   },
   persist: true,

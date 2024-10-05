@@ -181,10 +181,7 @@ provideUseId(() => useId())
       @mouseenter="onMouseEnter"
       @touchstart.passive="onTouchStart"
     >
-      <slot
-        :open="open"
-        :disabled="disabled"
-      >
+      <slot :open="open" :disabled="disabled">
         <button :disabled="disabled">
           Open
         </button>
@@ -198,26 +195,12 @@ provideUseId(() => useId())
       :style="containerStyle"
       @mouseenter="onMouseEnter"
     >
-      <Transition
-        appear
-        v-bind="ui.transition"
-      >
+      <Transition appear v-bind="ui.transition">
         <div>
-          <div
-            v-if="popper.arrow"
-            data-popper-arrow
-            :class="Object.values(ui.arrow)"
-          />
+          <div v-if="popper.arrow" data-popper-arrow :class="Object.values(ui.arrow)" />
 
-          <hls-menu-items
-            :class="[ui.base, ui.divide, ui.rounded[size], ui.shadow, ui.background]"
-            static
-          >
-            <div
-              v-for="(subItems, index) of items"
-              :key="index"
-              :class="ui.padding"
-            >
+          <hls-menu-items :class="[ui.base, ui.divide, ui.rounded[size], ui.shadow, ui.background]" static>
+            <div v-for="(subItems, index) of items" :key="index" :class="ui.padding">
               <NuxtLink
                 v-for="(item, subIndex) of subItems"
                 :key="subIndex"
@@ -225,10 +208,7 @@ provideUseId(() => useId())
                 v-bind="getNuxtLinkProps(item)"
                 custom
               >
-                <hls-menu-item
-                  v-slot="{ active, disabled: itemDisabled, close }"
-                  :disabled="item.disabled"
-                >
+                <hls-menu-item v-slot="{ active, disabled: itemDisabled, close }" :disabled="item.disabled">
                   <component
                     :is="!!href ? 'a' : 'button'"
                     :href="!itemDisabled ? href : undefined"
@@ -237,34 +217,16 @@ provideUseId(() => useId())
                     :class="twMerge(twJoin(ui.item.base, ui.paddingX[size], ui.height[size], ui.rounded[size], active || isActive ? ui.item.active : ui.item.inactive, itemDisabled && ui.item.disabled), item.class)"
                     @click="onClick($event, item, { href, navigate, close, isExternal })"
                   >
-                    <slot
-                      :name="item.slot || 'item'"
-                      :item="item"
-                    >
-                      <els-icon
-                        v-if="item.icon"
-                        :name="item.icon"
-                        :class="twMerge(twJoin(ui.icons[size]), item.iconClass)"
-                      />
-
-                      <els-avatar
-                        v-else-if="item.avatar"
-                        v-bind="{ size: size, ...item.avatar }"
-                      />
+                    <slot :name="item.slot || 'item'" :item="item">
+                      <els-icon v-if="item.icon" :name="item.icon" :class="twMerge(twJoin(ui.icons[size]), item.iconClass)" />
+                      <els-avatar v-else-if="item.avatar" v-bind="{ size: size, ...item.avatar }" />
 
                       <span :class="twMerge(ui.item.label, item.titleClass)">
                         {{ useLangs(item.title) }}
                       </span>
 
-                      <span
-                        v-if="item.shortcuts?.length"
-                        :class="ui.item.shortcuts"
-                      >
-                        <els-kbd
-                          v-for="shortcut of item.shortcuts"
-                          :key="shortcut"
-                          :size
-                        >
+                      <span v-if="item.shortcuts?.length" :class="ui.item.shortcuts">
+                        <els-kbd v-for="shortcut of item.shortcuts" :key="shortcut" :size>
                           {{ shortcut }}
                         </els-kbd>
                       </span>

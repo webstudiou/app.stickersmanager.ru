@@ -10,8 +10,8 @@ const style = computed(() => {
 </script>
 
 <template>
-  <div v-if="column.key === 'title' && column.visible" :style class="sticky top-0 bottom-0 mt-px h-[calc(100%_-_1px)] -left-[2px] bg-yellow rounded-sm z-1 gap-1.5 pl-2.5 self-start flex items-center contain-content bg-backgrounds-primary">
-    <slot />title
+  <div v-if="column.key === 'title' && column.visible" :style class="sticky top-0 bottom-0 mt-px h-[calc(100%_-_1px)] -left-[2px] bg-yellow z-1 gap-1.5 pl-2.5 self-start flex items-center contain-content bg-backgrounds-primary">
+    <slot />
   </div>
   <div v-else-if="column.key === 'id' && column.visible" :style class="bg-red px-1.5">
     <span class="bg-gray-6 rounded-xs px-1 py-0.5">

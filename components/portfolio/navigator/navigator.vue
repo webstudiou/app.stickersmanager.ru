@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { useStoreProjects } from '~/stores'
+import { useStoreAuth, useStoreProjects, useCoreStates } from '#imports'
 
 withDefaults(defineProps<Props>(), {
   size: 'md',
 })
 
 const storeProjects = useStoreProjects()
+const storeAuth = useStoreAuth()
+const limits = computed(() => storeAuth.limits)
+const { isBrowserProjectModalOpened } = useCoreStates()
 
 const datasets = reactive({
   favourites: false,
@@ -42,6 +45,19 @@ onMounted(async () => {
         </span>
         <div class="" />
       </div>
+
+      <div v-if="!limits.max_projects.use" class="rounded bg-gray-6 px-2.5 py-1.5 m-2.5 grid grid-rows-2 items-center">
+        <p class="text-footnote">
+          {{ useLangs('pages.dashboard.portfolios.navigator.empty.description') }}
+        </p>
+        <els-button
+          title="buttons.add.project.title"
+          size="sm"
+          fluid
+          @click="isBrowserProjectModalOpened = true"
+        />
+      </div>
+
       <portfolio-navigator-tree :entries="storeProjects.entries" :size class=" mr-2.5" />
     </div>
   </div>

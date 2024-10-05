@@ -23,6 +23,7 @@ declare global {
         type: 'subscription'
         attributes: {
           title: string
+          tariff: TariffKey
           members: number
           price: number
           interval: number
@@ -37,9 +38,10 @@ declare global {
     }
 
     type TariffKey = 'free' | 'team' | 'pro' | 'biz'
+    type ServiceKey = 'dashboard' | 'knowledge' | 'storage' | 'stickers'
 
     interface TariffCalculator {
-      [key: 'dashboard' | 'knowledge' | 'storage' | 'stickers']: MapPlan
+      [key: ServiceKey]: MapPlan
     }
     type D_TariffCalculator = api.MetApiResponse<{ data: TariffCalculator }>
   }

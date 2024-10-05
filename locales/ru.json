@@ -15,6 +15,12 @@
         }
       },
       "portfolios": {
+        "navigator": {
+          "empty": {
+            "title": "",
+            "description": "Создай свой первый проект и пригласи в него команду для совместной работы."
+          }
+        },
         "modals": {
           "create": {
             "headings": {
@@ -89,6 +95,26 @@
             "title": "Задачи",
             "all": "Все задачи",
             "my": "Мои задачи"
+          }
+        },
+        "viewers": {
+          "default": {
+            "title": "Список"
+          },
+          "month": {
+            "title": "Месяц"
+          },
+          "week": {
+            "title": "Неделя"
+          },
+          "gantt": {
+            "title": "Гант"
+          },
+          "matrix": {
+            "title": "Матрица"
+          },
+          "boards": {
+            "title": "Доски"
           }
         },
         "tables": {
@@ -536,7 +562,10 @@
     "update": {
       "title": "Обновить",
       "tariff": {
-        "title": "Улучшить тариф"
+        "title": "Улучшить тариф",
+        "to": {
+          "title": "Улучшить до"
+        }
       }
     },
     "create": {
@@ -544,6 +573,9 @@
       "dashboard": {
         "title": "Создать рабочее пространство"
       }
+    },
+    "share": {
+      "title": "Поделиться"
     }
   },
   "loadings": {

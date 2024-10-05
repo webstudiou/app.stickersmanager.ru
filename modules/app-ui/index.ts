@@ -409,6 +409,7 @@ export default defineNuxtModule<ModuleOptions>({
       rows: 44,
       toolbar: 50,
       footer: 50,
+      size: 'md',
     }
 
     createTemplates(_nuxt)

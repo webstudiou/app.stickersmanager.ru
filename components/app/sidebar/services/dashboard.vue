@@ -15,7 +15,15 @@ const datasets = reactive({
 const storeProjects = useStoreProjects()
 
 const storeAuth = useStoreAuth()
-const dashboard = computed(() => storeAuth.dashboard)
+const limits = computed(() => storeAuth.limits)
+const next_tariff = computed(() => {
+  switch (storeAuth.dashboard.data.relationships.subscription.data.attributes.tariff) {
+    case 'free': return 'team'
+    case 'team': return 'pro'
+    case 'pro': return 'biz'
+    case 'biz': return ''
+  }
+})
 </script>
 
 <template>
@@ -57,9 +65,16 @@ const dashboard = computed(() => storeAuth.dashboard)
     <portfolio-navigator />
 
     <div class="mx-2.5">
-      <div v-if="dashboard.data.limits.max_projects.total !== -1" class="rounded bg-gray-6 px-2.5 py-1.5 my-2.5 text-sm text-muted">
+      <div v-if="next_tariff" class="rounded bg-gray-6 px-2.5 py-1.5 my-2.5 text-sm text-muted grid grid-rows-3 items-center">
         <div>
-          {{ useLangs('pages.dashboard.limits.projects.used', { val: dashboard.data.limits.max_projects.use, max: dashboard.data.limits.max_projects.total }) }}
+          {{ useLangs('pages.dashboard.limits.projects.used', { val: limits.max_projects.use, max: limits.max_projects.total }) }}
+        </div>
+        <els-progress-bar :value="limits.max_projects.use" :max="limits.max_projects.total" />
+        <div class="flex justify-end text-primary">
+          <els-link :to="{ name: 'settings-subscription' }">
+            {{ useLangs('buttons.update.tariff.to.title') }}
+            <app-tariff :limit-key="next_tariff" />
+          </els-link>
         </div>
       </div>
 

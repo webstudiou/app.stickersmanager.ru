@@ -46,8 +46,8 @@ watch(selectedColumns, (newColumns: string[]) => {
           <els-icon name="settings" />
         </template>
         <template #option="{ selected, option }">
-          <span class="truncate text-sm">
-            {{ `pages.dashboard.stickers.tables.headings.${option.key}` }}
+          <span class="truncate text-sm cursor-pointer">
+            {{ useLangs(`pages.dashboard.stickers.tables.headings.${option.key}`) }}
           </span>
           <els-icon v-if="selected" name="check" size=".875rem" />
         </template>

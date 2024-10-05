@@ -16,10 +16,7 @@ useHead({
 </script>
 
 <template>
-  <app-page
-    scrollable
-    class="bg-backgrounds-primary"
-  >
+  <app-page scrollable class="bg-backgrounds-primary">
     <app-container />
   </app-page>
 </template>

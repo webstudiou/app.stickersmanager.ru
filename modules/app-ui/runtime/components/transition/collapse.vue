@@ -1,74 +1,43 @@
 <script setup lang="ts">
-defineOptions({
-  inheritAttrs: false,
+withDefaults(defineProps<Props>(), {
+  duration: 250,
+  delay: 0,
+  noOpacity: false,
+  appear: false,
+  mode: undefined,
+  group: false,
+  noMove: false,
+  moveDuration: 250,
+  axis: 'y',
 })
-
-const props = withDefaults(defineProps<Props>(), {
-  class: undefined,
-  ui: () => ({}),
-})
-
-const { ui, attrs } = useCore('transition-collapse', toRef(props, 'ui'), config, toRef(props, 'class'))
-
-function onEnter(_el: Element, done: () => void) {
-  const el = _el as HTMLElement
-  el.style.height = '0'
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  el.offsetHeight
-  el.style.height = el.scrollHeight + 'px'
-  el.addEventListener('transitionend', done, { once: true })
-}
-
-function onBeforeLeave(_el: Element) {
-  const el = _el as HTMLElement
-  el.style.height = el.scrollHeight + 'px'
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  el.offsetHeight
-}
-
-function onAfterEnter(_el: Element) {
-  const el = _el as HTMLElement
-  el.style.height = 'auto'
-}
-
-function onLeave(_el: Element, done: () => void) {
-  const el = _el as HTMLElement
-  el.style.height = '0'
-
-  el.addEventListener('transitionend', done, { once: true })
-}
 </script>
 
 <template>
-  <transition
-    v-bind="{ ...ui.transition, ...attrs }"
-    @enter="onEnter"
-    @after-enter="onAfterEnter"
-    @before-leave="onBeforeLeave"
-    @leave="onLeave"
+  <transition-expand
+    :axis
+    :duration
+    :delay
+    :no-opacity
+    :appear
+    :mode
+    :group
+    :no-move
+    :move-duration
   >
     <slot />
-  </transition>
+  </transition-expand>
 </template>
 
 <script lang="ts">
-import type { HTMLAttributes } from 'vue'
-import { mergeConfig } from '#app-ui/utils'
-import { useCore } from '#imports'
-// @ts-expect-error
-import appConfig from '#build/app.config'
-
-const el = {
-  transition: {
-    enterActiveClass: 'overflow-hidden transition-[height] duration-150 ease-out',
-    leaveActiveClass: 'overflow-hidden transition-[height] duration-150 ease-out',
-  },
-}
-
-const config = mergeConfig<typeof el>(appConfig.ui.strategy, null, el)
-
 type Props = {
-  class?: HTMLAttributes['class']
-  ui?: Partial<typeof config> & { strategy?: Strategy }
+  duration?: number
+  delay?: number
+  noOpacity?: boolean
+  appear?: boolean
+  mode?: string
+  group?: boolean
+  noMove?: boolean
+  moveDuration?: number
+  axis?: 'x' | 'y'
 }
 </script>
