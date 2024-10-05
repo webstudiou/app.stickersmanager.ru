@@ -16,13 +16,12 @@ function handleShowEditor() {
 
 function handleHideEditor() {
   // datasets.editor = false
-  // setTouched()
 }
 </script>
 
 <template>
   <div class="sticky top-0 bottom-0 mt-px h-[calc(100%_-_1px)] left-0 z-1 gap-1.5 pl-2.5 self-start flex items-center contain-content bg-backgrounds-primary" :style="style">
-    <els-icon name="square" class="text-muted hover:text-primary" :size="ui.size" />
+    <els-icon name="square" class="text-muted hover:text-primary" size="md" />
     <div class="w-full overflow-hidden truncate contain-content">
       <els-input-text
         v-if="datasets.editor"
@@ -30,6 +29,7 @@ function handleHideEditor() {
         :name="`title_${entry.data.id}`"
         title="buttons.create.sticker.title"
         :title-fixed="false"
+        auto-focus
         fluid
         :ui="{
           wrapper: 'relative',
@@ -48,7 +48,7 @@ function handleHideEditor() {
       </template>
     </div>
     <div class="inline-flex group-hover/row:opacity-100 opacity-0 transition-[opacity,color] text-muted hover:text-primary" :class="[datasets.editor && 'text-primary opacity-100']">
-      <els-icon name="edit" size="1rem" @click="handleShowEditor" />
+      <els-icon name="edit" size="sm" @click="handleShowEditor" />
     </div>
   </div>
 </template>

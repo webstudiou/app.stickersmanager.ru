@@ -11,6 +11,16 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { ui, attrs } = useCore('icon', toRef(props, 'ui'), config)
 
+const iconStyle = computed(() => {
+  const _size = (['xs', 'sm', 'md', 'lg', 'xl'].includes(props.size)) ? ui.value.icons[props.size] : props.size
+  return {
+    width: _size,
+    height: _size,
+  }
+})
+
+const iconSize = computed(() => (['xs', 'sm', 'md', 'lg', 'xl'].includes(props.size)) ? ui.value.icons[props.size] : props.size)
+
 const wrapperClass = computed(() => {
   return twMerge(twJoin(ui.value.wrapper), props.class)
 })
@@ -20,11 +30,9 @@ const wrapperClass = computed(() => {
   <icon
     :name="name"
     :class="wrapperClass"
-    :size="size"
+    :size="iconSize"
     v-bind="{ ...attrs }"
-    :style="{
-      width: size, height: size,
-    }"
+    :style="iconStyle"
   />
 </template>
 
@@ -40,7 +48,7 @@ const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.icon, 
 
 type Props = {
   name: string
-  size?: string
+  size?: string | ELEMENTS.SIZE
   class?: HTMLAttributes['class']
   ui?: Partial<typeof config> & { strategy?: Strategy }
 }

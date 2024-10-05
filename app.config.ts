@@ -1,6 +1,6 @@
 export default defineAppConfig({
   ui: {
-    size: 'md',
+
   },
   icon: {
     size: '20px',
