@@ -4,8 +4,19 @@ declare global {
       data: {
         id: string
         type: 'sticker'
+        attributes: {
+          id: number
+          title: string
+
+          start_at: string
+          end_at: string
+        }
+        relationships: {
+
+        }
       }
     }
+    type D_BrowserDefaultItem = api.MetApiResponse<{ data: BrowserDefaultItem }>
 
     interface BrowserDefaultItems {
       data: BrowserDefaultItem[]

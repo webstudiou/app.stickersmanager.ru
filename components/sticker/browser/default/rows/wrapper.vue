@@ -18,8 +18,8 @@ const visible = (key: string) => storeStickers.columns.find(i => i.key === key).
   <div class="group/row relative flex items-center h-[--row-min-height] transition-all cursor-pointer gap-1.5 border-y border-b-backgrounds-secondary border-t-transparent hover:border-b-gray-2 hover:before:border-t-gray-2 will-change-scroll before:transition-all before:-mx-px before:border-t before:border-t-transparent before:w-full before:block before:left-0 before:right-0 before:-top-[2px] before:absolute select-none" @click="storeStickers.entry=undefined">
     <slot name="title" :title-style="style('title')" />
 
-    <div v-if="visible('id')" class="group-hover/row:bg-red" :style="style('id')">
-      <slot name="id" />
+    <div v-if="visible('id')" class="group-hover/row:bg-red">
+      <slot name="id" :id-style="style('id')" />
     </div>
     <div v-if="visible('project')" class="flex items-center contain-content overflow-hidden gap-1.5 group-hover/row:bg-red" :style="style('project')">
       <slot name="project" />

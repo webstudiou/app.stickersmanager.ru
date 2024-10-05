@@ -5,6 +5,7 @@ export default defineAppConfig({
   icon: {
     size: '20px',
     class: 'svg-icon',
+    mode: 'svg',
     aliases: {
       'spinner': 'svg-spinners:3-dots-scale-middle',
       'email': 'lucide:mail',
@@ -63,6 +64,7 @@ export default defineAppConfig({
       'teams': 'lucide:baby',
       'minus-square': 'lucide:square-minus',
       'plus-square': 'lucide:square-plus',
+      'check-square': 'lucide:square-check-big',
       'list': 'lucide:list',
       'calendar': 'lucide:calendar-days',
       'month': 'lucide:calendar-days',
