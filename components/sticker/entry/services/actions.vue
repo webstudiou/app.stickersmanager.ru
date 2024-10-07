@@ -12,9 +12,9 @@ withDefaults(defineProps<Props>(), {
       :key="service.key"
       :href="`#${service.key}`"
       :disabled="service.disabled"
-      class="grid grid-flow-col auto-cols-max items-center gap-1.5 px-1.5 w-max rounded-xs hover:bg-gray-6 hover:text-labels-primary transition-colors"
+      class="grid grid-flow-col auto-cols-max items-center gap-1.5 pr-1.5 text-sm w-max rounded-xs hover:text-primary transition-colors"
     >
-      <els-icon :name="service.icon" size=".875rem" />
+      <els-icon name="plus" size="sm" />
       {{ useLangs(service.key) }}
       <!--              text-decoration: unset; -->
     </a>

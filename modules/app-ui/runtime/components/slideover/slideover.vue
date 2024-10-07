@@ -1,41 +1,43 @@
 <template>
-  <TransitionRoot
+  <hls-transition-root
     as="template"
     :appear="appear"
     :show="isOpen"
     @after-leave="onAfterLeave"
   >
-    <HDialog
+    <hls-dialog
       :class="[ui.wrapper, { 'justify-end': side === 'right' }, { 'items-end': side === 'bottom' }]"
       v-bind="attrs"
       @close="close"
     >
-      <TransitionChild
+      <hls-transition-child
         v-if="overlay"
         as="template"
         :appear="appear"
         v-bind="ui.overlay.transition"
+        :class="ui.overlay.transition.enterFrom"
       >
         <div :class="[ui.overlay.base, ui.overlay.background]" />
-      </TransitionChild>
+      </hls-transition-child>
 
-      <TransitionChild
+      <hls-transition-child
         as="template"
         :appear="appear"
         v-bind="transitionClass"
+        :class="transitionClass.enterFrom"
       >
-        <HDialogPanel :class="[ui.base, sideType === 'horizontal' ? [ui.width, 'h-full'] : [ui.height, 'w-full'], ui.background, ui.ring, ui.padding]">
+        <hls-dialog-panel :class="[ui.base, sideType === 'horizontal' ? [ui.width, 'h-full'] : [ui.height, 'w-full'], ui.background, ui.ring, ui.padding]">
           <slot />
-        </HDialogPanel>
-      </TransitionChild>
-    </HDialog>
-  </TransitionRoot>
+        </hls-dialog-panel>
+      </hls-transition-child>
+    </hls-dialog>
+  </hls-transition-root>
 </template>
 
 <script lang="ts">
 import { computed, toRef, defineComponent } from 'vue'
 import type { WritableComputedRef, PropType } from 'vue'
-import { Dialog as HDialog, DialogPanel as HDialogPanel, TransitionRoot, TransitionChild, provideUseId } from '@headlessui/vue'
+import { provideUseId } from '@headlessui/vue'
 import { useCore } from '../../composables'
 import { mergeConfig } from '../../utils'
 // @ts-expect-error
@@ -46,12 +48,6 @@ import { useId } from '#imports'
 const config = mergeConfig<typeof el>(appConfig.ui.strategy, appConfig.ui.slideover, el)
 
 export default defineComponent({
-  components: {
-    HDialog,
-    HDialogPanel,
-    TransitionRoot,
-    TransitionChild,
-  },
   inheritAttrs: false,
   props: {
     modelValue: {

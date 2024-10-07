@@ -28,7 +28,7 @@ export default {
     bottom: 'translate-y-full',
   },
   transition: {
-    enter: 'transform transition ease-in-out duration-350',
-    leave: 'transform transition ease-in-out duration-250',
+    enter: 'transform transition ease-in-out duration-300',
+    leave: 'transform transition ease-in-out duration-220',
   },
 }

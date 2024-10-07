@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { useStoreStickers } from '#imports'
+
 const datasets = reactive({
   filters: false,
+})
+
+onMounted(async () => {
+  const storeStickers = useStoreStickers()
+  await storeStickers.init()
 })
 </script>
 

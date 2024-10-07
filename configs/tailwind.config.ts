@@ -15,7 +15,7 @@ export default {
     'pages/**/*.vue',
     'composables/**/*.{js,ts}',
     'plugins/**/*.{js,ts}',
-    'utils/**/*.{js,ts}',
+    'utils/**/*.{js,ts,tsx}',
 
     'App.{js,ts,vue}',
     'app.{js,ts,vue}',
@@ -23,6 +23,7 @@ export default {
     'error.{js,ts,vue}',
     'app.config.{js,ts}',
   ],
+  safelist: ['ProseMirror'],
   presets: [],
   darkMode: 'class',
   theme: {
@@ -35,6 +36,7 @@ export default {
       // spin: 'spin 1s linear infinite',
       ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      skeleton: 'skeleton 1.4s ease infinite',
       // bounce: 'bounce 1s infinite',
     },
     aria: {
@@ -392,6 +394,7 @@ export default {
         900: 'rgb(var(--color-green-900))',
         950: 'rgb(var(--color-green-950))',
       },
+      'neutral': colors.neutral,
     }),
     columns: {
       auto: 'auto',
@@ -812,6 +815,14 @@ export default {
           opacity: '.5',
         },
       },
+      skeleton: {
+        '0%': {
+          backgroundPosition: '100% 50%',
+        },
+        'to': {
+          backgroundPosition: '0 50%',
+        },
+      },
       /* bounce: {
         '0%, 100%': {
           transform: 'translateY(-25%)',
@@ -836,8 +847,8 @@ export default {
       /* tight: '1.25',
       snug: '1.375', */
       normal: '1.5',
-      /* relaxed: '1.625',
-      loose: '2', */
+      relaxed: '1.625',
+      /* loose: '2', */
     },
     listStyleType: {
       none: 'none',
@@ -1160,7 +1171,7 @@ export default {
       DEFAULT: 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
       colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
       opacity: 'opacity',
-      /* shadow: 'box-shadow', */
+      shadow: 'box-shadow',
       transform: 'transform',
     },
     transitionTimingFunction: {
@@ -1244,8 +1255,8 @@ export default {
       '10/12': '83.333333%',
       '11/12': '91.666667%',
       'full': '100%',
-      /* screen: '100vw',
-      svw: '100svw',
+      'screen': '100vw',
+      /* svw: '100svw',
       lvw: '100lvw',
       dvw: '100dvw', */
       'min': 'min-content',

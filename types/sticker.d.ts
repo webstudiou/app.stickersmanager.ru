@@ -7,12 +7,13 @@ declare global {
         attributes: {
           id: number
           title: string
-
-          start_at: string
-          end_at: string
         }
         relationships: {
 
+        }
+        timestamps: {
+          start_at: string
+          end_at: string
         }
       }
     }
@@ -28,6 +29,18 @@ declare global {
       data: {
         id: string
         type: 'sticker'
+        attributes: {
+          id: number
+          title: string
+          description: string
+        }
+        relationships: {
+          creator: Users.Member
+        }
+        timestamps: Models.Timestamps & {
+          start_at: string
+          end_at: string
+        }
       }
     }
     type D_Sticker = api.MetApiResponse<{ data: Sticker }>

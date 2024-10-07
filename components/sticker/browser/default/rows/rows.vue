@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { useAppConfig, useStoreStickers } from '#imports'
-
-const { ui } = useAppConfig()
+import { useStoreStickers } from '#imports'
 
 const storeStickers = useStoreStickers()
 const entries = computed(() => storeStickers.entries)
-
 const loading = computed(() => storeStickers.loading)
 
 const datasets = reactive({
@@ -39,7 +36,7 @@ async function handleEnter() {
 
 <template>
   <div>
-    <div v-if="loading" @mouseleave="datasets.editor = false">
+    <div v-if="!loading" @mouseleave="datasets.editor = false">
       <div class="relative flex cursor-text border-b border-b-backgrounds-secondary">
         <div class="sticky left-0 top-0 z-1 flex gap-1.5 items-center pl-2.5 bg-backgrounds-primary h-[--row-min-height]">
           <els-icon name="square-plus" size="md" class="text-muted" />

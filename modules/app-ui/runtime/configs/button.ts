@@ -89,7 +89,7 @@ export default {
     },
     input: {
       solid: 'bg-gray-6',
-      bezeled: 'bg-gray-6/15 bg-gray-6 hover:bg-gray-6 hover:text-white',
+      bezeled: 'bg-gray-6/15 bg-gray-6 text-labels-primary/50 hover:bg-gray-6 hover:text-labels-primary',
       outline: 'bg-transparent !border-gray-6 text-gray-6',
     },
     transparent: {

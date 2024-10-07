@@ -1,0 +1,59 @@
+.ProseMirror {
+  @apply caret-black dark:caret-white outline-0 z-0;
+  //  pl-20 py-16 lg:pl-8 lg:pr-8 max-w-2xl pr-8 mx-auto
+
+  .selection {
+    @apply inline-block;
+  }
+
+  .selection,
+  *::selection {
+    // @apply bg-black/10 dark:bg-white/20;
+    @apply bg-gray-6 inline-block;
+  }
+
+  //& > .nuxt-renderer {
+  //  @apply my-12 first:mt-0 last:mb-0;
+  //}
+  //
+  //&.resize-cursor {
+  //  @apply cursor-col-resize;
+  //}
+
+  .ProseMirror-gapcursor {
+    @apply relative w-full mx-auto;
+    //  max-w-2xl
+
+    &:after {
+      @apply border-t-black/40 dark:border-t-white/40 w-full -top-[1.5em] mx-auto left-0 right-0;
+      // max-w-2xl
+    }
+  }
+
+
+}
+
+[data-theme='slash-command'] {
+  width: 1000vw;
+}
+
+.drag-handle {
+  @apply fixed flex justify-end transition-all;
+  z-index: 9998;
+  padding-right: 8px;
+  will-change: top, left;
+
+  button {
+    @apply flex flex-center m-0 p-0 h-sm w-[8px];
+    background: red;
+  }
+}
+
+// @import 'animations';
+//@import 'blocks';
+//@import 'code';
+//@import 'collab';
+@import 'lists';
+@import 'placeholder';
+//@import 'table';
+@import 'typography';

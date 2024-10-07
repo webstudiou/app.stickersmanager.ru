@@ -61,6 +61,7 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     '@unlazy/nuxt',
     '@morev/vue-transitions/nuxt',
+    'nuxt-tiptap-editor',
   ],
   auth: {
     globalAppMiddleware: {
@@ -133,6 +134,9 @@ export default defineNuxtConfig({
   vueTransitions: {
     // The same options as in the plugin itself.
     // You will get an autocomplete using Nuxt 3.
+  },
+  tiptap: {
+    prefix: 'Tiptap',
   },
   appLicense: {
     license: '0595d19d-65d3-4b73-b917-1fd32d9a7b0e',

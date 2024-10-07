@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useCoreStates } from '#imports'
+
 const props = withDefaults(defineProps<Props>(), {})
 
 const datasets = reactive({
   editor: false,
+  loading: true,
 })
 
 const title = ref(props.entry.data.attributes.title)
@@ -13,6 +16,12 @@ function handleShowEditor() {
 
 function handleSave() {
   datasets.editor = false
+}
+
+const { isStickerEditorOpened, stickerEditorId } = useCoreStates()
+async function handleEditor() {
+  stickerEditorId.value = props.entry.data.id
+  isStickerEditorOpened.value = true
 }
 </script>
 
@@ -29,7 +38,7 @@ function handleSave() {
           class="w-full outline-none border-none bg-transparent p-0 text-md caret-primary"
           @keyup.enter="handleSave"
         >
-        <div v-else class="truncate text-md">
+        <div v-else class="truncate text-md" @click="handleEditor">
           {{ entry.data.attributes.title }}
         </div>
       </div>

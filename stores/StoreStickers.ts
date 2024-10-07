@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { useErrorHandler } from '~/composables'
 
 export const useStoreStickers = defineStore('StoreStickers', {
   state: () => ({
@@ -23,11 +24,55 @@ export const useStoreStickers = defineStore('StoreStickers', {
     entry: ref<Stickers.Sticker>(),
   }),
   actions: {
+    init(): Promise<void> {
+      this.loading = true
+      this.entries = []
+      this.entry = undefined
 
+      return new Promise<void>((resolve) => {
+        $fetch('/api/dashboard/stickers')
+          .then((res) => {
+            this.entries = this.entries.concat(res.data.data)
+          })
+          .catch(e => useErrorHandler(e))
+          .finally(() => {
+            this.loading = false
+            resolve()
+          })
+      })
+    },
+    editor(id: string): Promise<void> {
+      this.entry = undefined
+
+      return new Promise<void>((resolve) => {
+        $fetch(`/api/dashboard/stickers/${id}`)
+          .then((res) => {
+            this.entry = res.data
+          })
+          .catch(e => useErrorHandler(e))
+          .finally(() => {
+            resolve()
+          })
+      })
+    },
+    change(name: string, value: any): Promise<void> {
+      if (!this.entry) {
+        return
+      }
+
+      return new Promise<void>(() => {
+        $fetch<api.MetApiResponse>(`/api/dashboard/stickers/${this.entry.data.id}/settings`, {
+          method: 'PATCH', body: {
+            name: name,
+            value: value,
+          },
+        })
+          .catch(e => useErrorHandler(e))
+      })
+    },
   },
   getters: {
 
   },
   persist: true,
-},
-)
+})

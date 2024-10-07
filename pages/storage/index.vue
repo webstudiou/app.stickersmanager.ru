@@ -13,6 +13,8 @@ setTitle('pages.storage.index.headings.title')
 useHead({
   title: useLangs('pages.storage.index.headings.title'),
 })
+
+const t = ref('')
 </script>
 
 <template>
@@ -20,6 +22,9 @@ useHead({
     scrollable
     class="bg-backgrounds-primary"
   >
-    <app-container />
+    <app-container>
+      <tiptap-editor v-model="t" />
+    </app-container>
+    {{ t }}
   </app-page>
 </template>

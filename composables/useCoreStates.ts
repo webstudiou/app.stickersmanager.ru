@@ -9,12 +9,18 @@ const _useCoreStates = () => {
   const isBrowserProjectModalOpened = ref(false)
   const isBrowserFolderModalOpened = ref(false)
 
+  const isStickerEditorOpened = ref(false)
+  const stickerEditorId = ref('')
+
   watch(() => route.path, () => {
     isSidebarOpened.value = false
     isNotificationsOpened.value = false
 
     isBrowserProjectModalOpened.value = false
     isBrowserFolderModalOpened.value = false
+
+    isStickerEditorOpened.value = false
+    stickerEditorId.value = ''
   })
 
   return {
@@ -23,6 +29,9 @@ const _useCoreStates = () => {
 
     isBrowserProjectModalOpened,
     isBrowserFolderModalOpened,
+
+    isStickerEditorOpened,
+    stickerEditorId,
   }
 }
 

@@ -49,6 +49,18 @@ declare global {
     }
 
     type D_User = api.MetApiResponse<{ data: User }>
+
+    interface Member {
+      data: {
+        id: string
+        type: 'user'
+        attributes: {
+          name: string
+          image: Avatars | null
+          email: string
+        }
+      }
+    }
   }
 }
 
